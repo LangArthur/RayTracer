@@ -9,9 +9,6 @@ set(CMAKE_CXX_FLAGS "-W -Wall -fprofile-arcs -ftest-coverage")
 
 ## General sources
 set(SRC
-    ${ENGINE_SRC}
-    ${UTILS_SRC}
-    ${LUA_SRC}
 )
 
 ## Include headers to program
@@ -19,12 +16,13 @@ include_directories(
     src
 )
 
-set (SRC_TEST
-    tests/main.cpp
-)
-
 add_executable(RayTracer
     ${SRC}
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
+)
+
+set (SRC_TEST
+    tests/main.cpp
 )
 
 ## including google test library
