@@ -34,3 +34,8 @@
 #build
 Arthur/build/
 build/
+
+#test
+*unit_test
+*.gcna
+*.gcno
