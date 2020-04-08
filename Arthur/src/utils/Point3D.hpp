@@ -19,6 +19,16 @@ namespace math {
             inline const T y() const { return _y; };
             inline const T z() const { return _z; };
 
+            bool operator==(const Point3D& other)
+            {
+                return (other.x() == _x && other.y() == y && other.z() == z);
+            }
+
+            bool operator!=(const Point3D& other)
+            {
+                return (other.x() != _x || other.y() != y || other.z() != z);
+            }
+
             Point3D operator+(const Point3D& other)
             {
                 Point3D<T> res(_x + other.x(), _y + other.y(), _z + other.z());
