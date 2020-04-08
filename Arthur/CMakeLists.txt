@@ -5,6 +5,18 @@ project(RayTracer)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
 
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
+
+if(UNIX)
+    find_package(Threads)
+    add_compile_options(-g)
+endif()
+
+find_package(glm REQUIRED)
+
+## Enable Google test library
+enable_testing()
+
 set(CMAKE_CXX_FLAGS "-W -Wall -fprofile-arcs -ftest-coverage")
 
 ## General sources
@@ -37,10 +49,12 @@ add_executable(unit_tests
 
 ## Linking libraries
 target_link_libraries(RayTracer PUBLIC
+    CONAN_PKG::glm
     ${CMAKE_DL_LIBS}
 )
 
 target_link_libraries(unit_tests PUBLIC
+    CONAN_PKG::glm
     CONAN_PKG::gtest
     ${CMAKE_THREAD_LIBS_INIT}
     ${CMAKE_DL_LIBS}
