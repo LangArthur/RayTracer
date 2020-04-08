@@ -21,10 +21,12 @@ set(CMAKE_CXX_FLAGS "-W -Wall -fprofile-arcs -ftest-coverage")
 
 ## General sources
 set(SRC
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Ray.cpp
 )
 
 ## Include headers to program
 include_directories(
+    src/utils
     src
 )
 
