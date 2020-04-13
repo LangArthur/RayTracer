@@ -1,12 +1,11 @@
-extern crate num;
+extern crate cgmath;
 
-use num::Num;
-
+use cgmath::Point3;
 use crate::props;
 
 /// A sphere struct that contains data to render a sphere in a scene.
-pub struct Sphere<T: Num + PartialOrd + Copy> {
-    pub center: props::vector::Vector3<T>,
+pub struct Sphere {
+    pub center: Point3<f64>,
     pub radius: f64,
     pub color:  props::color::Color
 }
@@ -16,5 +15,5 @@ pub struct Scene {
     pub width:  u32,
     pub height: u32,
     pub fov:    f64,
-    pub sphere: Sphere<f64>
+    pub sphere: Sphere
 }

@@ -3,7 +3,7 @@ use raytracer::props::ray::Ray;
 #[test]
 fn instantiate_ray_test() {
 
-    let ray_1: Ray<f64> = Ray::new(10.0, 2.5, 5.5);
+    let ray_1: Ray = Ray::new(10.0, 2.5, 5.5);
 
     assert_eq!(ray_1.origin.x, 10.0);
     assert_eq!(ray_1.origin.y, 2.5);
@@ -13,7 +13,7 @@ fn instantiate_ray_test() {
     assert_eq!(ray_1.direction.y, 0.0);
     assert_eq!(ray_1.direction.z, 0.0);
 
-    let ray_2: Ray<f64> = Ray::zero();
+    let ray_2: Ray = Ray::zero();
 
     assert_eq!(ray_2.origin.x, 0.0);
     assert_eq!(ray_2.origin.y, 0.0);
