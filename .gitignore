@@ -36,4 +36,4 @@ Arthur/build/
 build/
 
 # Rust
-targets/
+target/
