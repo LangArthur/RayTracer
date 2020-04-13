@@ -15,7 +15,7 @@ fn test_can_render_scene() {
         height: 600,
         fov: 90.0,
         sphere: objects::Sphere {
-            center: props::point::Point::new(0.0, 0.0, -5.0),
+            center: props::vector::Vector3::new(0.0, 0.0, -5.0),
             radius: 1.0,
             color: props::color::Color {
                 r: 0,

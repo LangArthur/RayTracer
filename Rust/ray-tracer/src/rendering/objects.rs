@@ -6,7 +6,7 @@ use crate::props;
 
 /// A sphere struct that contains data to render a sphere in a scene.
 pub struct Sphere<T: Num + PartialOrd + Copy> {
-    pub center: props::point::Point<T>,
+    pub center: props::vector::Vector3<T>,
     pub radius: f64,
     pub color:  props::color::Color
 }
