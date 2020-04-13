@@ -1,1 +1,2 @@
-pub mod objects;
+pub mod scene;
+pub mod sphere;

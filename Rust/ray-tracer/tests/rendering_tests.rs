@@ -1,24 +1,24 @@
 extern crate cgmath;
 
-use raytracer::rendering::objects;
+use raytracer::rendering;
 use raytracer::props;
 
 use cgmath::Point3;
 use image;
 use image::GenericImageView;
 
-pub fn render(scene: &objects::Scene) -> image::DynamicImage {
+pub fn render(scene: &rendering::scene::Scene) -> image::DynamicImage {
     image::DynamicImage::new_rgb8(scene.width, scene.height)
 }
 
 #[test]
 fn test_can_render_scene() {
 
-    let scene = objects::Scene {
+    let scene = rendering::scene::Scene {
         width: 800,
         height: 600,
         fov: 90.0,
-        sphere: objects::Sphere {
+        sphere: rendering::sphere::Sphere {
             center: Point3::new(0.0, 0.0, -5.0),
             radius: 1.0,
             color: props::color::Color {
