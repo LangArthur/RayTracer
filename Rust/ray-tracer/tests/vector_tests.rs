@@ -4,11 +4,18 @@ use raytracer::props::vector::Vector3;
 fn new_vector3d_test() {
 
     // Creating a 3d vector.
-    let vec3 = Vector3::new(1, 25, 0);
+    let vec3_1 = Vector3::new(1, 25, 0);
 
-    assert_eq!(vec3.x, 1);
-    assert_eq!(vec3.y, 25);
-    assert_eq!(vec3.z, 0);
+    assert_eq!(vec3_1.x, 1);
+    assert_eq!(vec3_1.y, 25);
+    assert_eq!(vec3_1.z, 0);
+
+    // Creating a 3d vector initialised at zero.
+    let vec3_2: Vector3<i32> = Vector3::zero();
+
+    assert_eq!(vec3_2.x, 0);
+    assert_eq!(vec3_2.y, 0);
+    assert_eq!(vec3_2.z, 0);
 }
 
 #[test]

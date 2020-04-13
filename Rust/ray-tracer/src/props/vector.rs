@@ -1,16 +1,20 @@
+extern crate num;
+
+use num::Num;
+
 use std::ops::Add;
 use std::ops::Sub;
 use std::ops::Mul;
 
 /// Vector class with three dimensions.
 #[derive(Debug)]
-pub struct Vector3<T: PartialOrd + Copy> {
+pub struct Vector3<T: Num + PartialOrd + Copy> {
     pub x: T,
     pub y: T,
     pub z: T
 }
 
-impl<T: PartialOrd + Copy> Vector3<T> {
+impl<T: Num + PartialOrd + Copy> Vector3<T> {
     pub fn new(x: T, y: T, z: T) -> Vector3<T> {
         Vector3 {
             x,
@@ -18,10 +22,18 @@ impl<T: PartialOrd + Copy> Vector3<T> {
             z
         }
     }
+
+    pub fn zero() -> Vector3<T> {
+        Vector3 {
+            x: T::zero(),
+            y: T::zero(),
+            z: T::zero()
+        }
+    }
 }
 
 impl<T> Add for Vector3<T>
-where T: PartialOrd + Copy + Add<Output = T> {
+where T: Num + PartialOrd + Copy + Add<Output = T> {
 
     type Output = Self;
 
@@ -35,7 +47,7 @@ where T: PartialOrd + Copy + Add<Output = T> {
 }
 
 impl<T> Sub for Vector3<T>
-where T: PartialOrd + Copy + Sub<Output = T> {
+where T: Num + PartialOrd + Copy + Sub<Output = T> {
 
     type Output = Self;
 
@@ -49,7 +61,7 @@ where T: PartialOrd + Copy + Sub<Output = T> {
 }
 
 impl<T> Mul for Vector3<T>
-where T: PartialOrd + Copy + Mul<Output = T> {
+where T: Num + PartialOrd + Copy + Mul<Output = T> {
 
     type Output = Self;
 
