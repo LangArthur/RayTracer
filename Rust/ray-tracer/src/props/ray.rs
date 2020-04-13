@@ -50,12 +50,13 @@ impl Ray {
         };
 
         // We stil need the fov slide, but I don't know how to do it yet.
-        // let fov: f64;
+        let fov_adj = (scene.fov.to_radians() / 2.0).tan();
+
 
         // We add .5 to put the ray in the center of a pixel, not at it's (0, 0) coordinates.
         // Mul by 2 and sub by 1 transforms the result in the [-1; 1] bounds.
-        let image_plane_x = (((x * 0.5) / scene.width  as f64) * 2.0 - 1.0) * aspect_ratio;
-        let image_plane_y =  ((y * 0.5) / scene.height as f64) * 2.0 - 1.0;
+        let image_plane_x = (((x * 0.5) / scene.width  as f64) * 2.0 - 1.0) * aspect_ratio * fov_adj;
+        let image_plane_y =  1.0 - ((y * 0.5) / scene.height as f64) * 2.0 * fov_adj;
 
         Ray {
             origin:    Vector3::new(0.0, 0.0, 0.0),
