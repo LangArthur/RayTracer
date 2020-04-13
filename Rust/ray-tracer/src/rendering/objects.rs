@@ -1,10 +1,10 @@
-use crate::rendering::prop;
+use crate::props;
 
 /// A sphere struct that contains data to render a sphere in a scene.
 pub struct Sphere {
-    pub center: prop::Point,
+    pub center: props::point::Point,
     pub radius: f64,
-    pub color:  prop::Color
+    pub color:  props::color::Color
 }
 
 /// A struct that will hold objects to be rendered.

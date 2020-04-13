@@ -1,5 +1,5 @@
 use raytracer::rendering::objects;
-use raytracer::rendering::prop;
+use raytracer::props;
 use image::GenericImageView;
 use image;
 
@@ -15,13 +15,13 @@ fn test_can_render_scene() {
         height: 600,
         fov: 90.0,
         sphere: objects::Sphere {
-            center: prop::Point {
+            center: props::point::Point {
                 x: 0.0,
                 y: 0.0,
                 z: -5.0
             },
             radius: 1.0,
-            color: prop::Color {
+            color: props::color::Color {
                 r: 0,
                 g: 255,
                 b: 0,
