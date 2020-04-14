@@ -4,7 +4,7 @@ use cgmath::Vector3;
 use cgmath::InnerSpace;
 use crate::props::ray::Ray;
 use crate::props::color::Color;
-use crate::rendering::object_traits::Intersect;
+use crate::rendering::object_traits::Drawable;
 
 /// A sphere struct that contains data to render a sphere in a scene.
 pub struct Sphere {
@@ -13,8 +13,8 @@ pub struct Sphere {
     pub color:  Color
 }
 
-impl Intersect for Sphere {
-    fn hit(&self, ray: &Ray) -> bool {
+impl Drawable for Sphere {
+    fn hit(&self, ray: &Ray) -> Option<f64> {
 
         // A *-----* B
         //   |  --
@@ -37,6 +37,18 @@ impl Intersect for Sphere {
         let intersect_distance = len_to_center.dot(len_to_center) - hypotenuse * hypotenuse;
 
         // if AC is smaller than the radius of the sphere, then the ray has hit the sphere.
-        intersect_distance < (self.radius * self.radius)
+        if intersect_distance < (self.radius * self.radius) {
+            return Some(intersect_distance);
+        }
+        None
+    }
+
+    fn color(&self) -> Color {
+        Color {
+            r: self.color.r,
+            g: self.color.g,
+            b: self.color.b,
+            a: self.color.a,
+        }
     }
 }
