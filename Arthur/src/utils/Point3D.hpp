@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include <glm/glm.hpp>
+#include <Eigen/Dense>
 
 namespace math {
 
@@ -51,9 +51,9 @@ namespace math {
                 return res;
             }
 
-            glm::vec3 convert() const
+            Eigen::Vector3d convert() const
             {
-                glm::vec3 res(_x, _y, _z);;
+                Eigen::Vector3d res(_x, _y, _z);
                 return res;
             }
 
@@ -64,9 +64,9 @@ namespace math {
     };
 
         template<typename T>
-        static glm::vec3 toVector(const Point3D<T> &fst, const Point3D<T> &sec)
+        static Eigen::Vector3d toVector(const Point3D<T> &fst, const Point3D<T> &sec)
         {
-            glm::vec3 res(sec.x() - fst.x(), sec.y() - fst.y(), sec.z() - fst.z());
-            return res;
+            Eigen::Vector3d v(sec.x() - fst.x(), sec.y() - fst.y(), sec.z() - fst.z());
+            return v;
         }
 }

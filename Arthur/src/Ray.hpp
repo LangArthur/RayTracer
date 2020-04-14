@@ -7,8 +7,6 @@
 
 #pragma once
 
-#include <glm/glm.hpp>
-
 #include "Point3D.hpp"
 
 namespace raytracer 
@@ -16,15 +14,15 @@ namespace raytracer
     class Ray {
 
         public:
-            Ray(glm::vec3 direction, math::Point3D<float> origin);
+            Ray(const Eigen::Vector3d &direction, const math::Point3D<float> &origin);
             ~Ray();
 
-            inline const glm::vec3 &direction() const { return _direction; };
+            inline const Eigen::Vector3d &direction() const { return _direction; };
 
             inline const math::Point3D<float> &origin() const { return _origin; };
 
         private:
-            glm::vec3 _direction;
+            Eigen::Vector3d _direction;
             math::Point3D<float> _origin;
 
         };

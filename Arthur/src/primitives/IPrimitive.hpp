@@ -16,6 +16,6 @@ namespace raytracer
         public:
             virtual ~IPrimitive() = default;
 
-            virtual bool intersect(const Ray& ray, float &dist) = 0;
+            virtual bool intersect(const Ray& ray) = 0;
     };
 }

@@ -13,16 +13,17 @@ raytracer::Sphere::Sphere(const math::Point3D<float> &center, const float &radiu
 raytracer::Sphere::~Sphere()
 { }
 
-bool raytracer::Sphere::intersect(const raytracer::Ray &ray, float &dist)
+bool raytracer::Sphere::intersect(const raytracer::Ray &ray)
 {
-    float a = 1;
-    glm::vec3 OC = math::toVector(ray.origin(), _center);
-    float b = glm::dot(ray.direction(), OC);
-    float c = glm::length(OC) - _radius * _radius;
+    // float a = 1;
+    // glm::vec3 OC = math::toVector(ray.origin(), _center);
+    // float b = glm::dot(ray.direction(), OC);
+    // float c = glm::length(OC) - _radius * _radius;
 
-    float delta = (b * b) - (a * c);
-    if (delta < 0)
-        return false;
-    else
-        return true;
+    // float delta = (b * b) - (a * c);
+    // if (delta < 0)
+    //     return false;
+    // else
+    //     return true;
+    return false;
 }

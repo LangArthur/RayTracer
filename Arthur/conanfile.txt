@@ -1,6 +1,10 @@
 [requires]
 gtest/1.8.1@bincrafters/stable
-glm/0.9.9.5
+eigen/3.3.7
+opencv/3.4.3@conan/stable
 
 [generators]
 cmake
+
+[options]
+opencv:gtk=2
