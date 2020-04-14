@@ -11,6 +11,7 @@
 #include <memory>
 
 #include "IPrimitive.hpp"
+#include "Renderer.hpp"
 
 namespace raytracer
 {
@@ -24,5 +25,6 @@ namespace raytracer
 
         private:
             std::vector<std::shared_ptr<IPrimitive>> _primitives;
+            Renderer _rend;
     };
 }
