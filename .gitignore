@@ -31,9 +31,27 @@ targets/-# Prerequisites
 *.out
 *.app
 
+# scala / sbt
+# (may want to keep parts of 'project')
+bin/
+project/
+target/
+build/
+.metals/
+.history
+.scala_dependencies
+.cache
+.cache-main
+*.class
+
 # Build
 Arthur/build/
 build/
+
+#test
+*unit_test
+*.gcna
+*.gcno
 
 # Rust
 target/
