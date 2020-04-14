@@ -31,21 +31,17 @@ targets/-# Prerequisites
 *.out
 *.app
 
-# sbt
+# scala / sbt
 # (may want to keep parts of 'project')
 bin/
 project/
 target/
 build/
 .metals/
-
-# other?
 .history
 .scala_dependencies
 .cache
 .cache-main
-
-#general
 *.class
 
 # Build
