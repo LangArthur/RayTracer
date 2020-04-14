@@ -7,10 +7,12 @@
 
 #include "Triangle.hpp"
 
-raytracer::Triangle::Triangle(math::Point3D<float> a, math::Point3D<float> b, math::Point3D<float> c) : _a(a), _b(b), _c(c)
+raytracer::Triangle::Triangle(const math::Point3D<float> &a, const math::Point3D<float> &b, const math::Point3D<float> &c) : _a(a), _b(b), _c(c)
 { }
 
-bool raytracer::Triangle::intersect(const Ray& ray, float &dist)
+bool raytracer::Triangle::intersect(const Ray& ray)
 {
-
+    // glm::vec3 unknown(-1, -7, -6);
+    // glm::mat3 system(_a.x(), _b.x(), _c.x(), _a.y(), _b.y(), _c.y(), _a.z(), _b.z(), _c.z());
+    return true;
 }
