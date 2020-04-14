@@ -5,6 +5,8 @@
  * Point2D.hpp
  */
 
+#pragma once
+
 namespace math {
 
     template<typename T>

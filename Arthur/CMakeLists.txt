@@ -19,13 +19,20 @@ enable_testing()
 
 set(CMAKE_CXX_FLAGS "-W -Wall -fprofile-arcs -ftest-coverage")
 
+set(SRC_PRIMITIVES
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/primitives/Square.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/primitives/Sphere.cpp
+)
+
 ## General sources
 set(SRC
+    ${SRC_PRIMITIVES}
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Ray.cpp
 )
 
 ## Include headers to program
 include_directories(
+    src/primitives
     src/utils
     src
 )

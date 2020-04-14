@@ -5,12 +5,14 @@
  * Ray.hpp
  */
 
+#pragma once
+
 #include <glm/glm.hpp>
 
 #include "Point3D.hpp"
 
-namespace raytracer {
-
+namespace raytracer 
+{
     class Ray {
 
         public:
