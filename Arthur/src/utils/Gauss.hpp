@@ -11,8 +11,9 @@
 
 namespace math
 {
-    void GaussElimination(glm::mat3 system, glm::vec3 unknown)
-    {
+    // to Implement for fun
+    // void GaussElimination(glm::mat3 system, glm::vec3 unknown)
+    // {
 
-    }
+    // }
 }
