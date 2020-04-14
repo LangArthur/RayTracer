@@ -1,4 +1,4 @@
-# Prerequisites
+targets/-# Prerequisites
 *.d
 
 # Compiled Object files
@@ -47,3 +47,13 @@ build/
 
 #general
 *.class
+
+# Build
+Arthur/build/
+build/
+
+# Rust
+target/
+
+# Other
+*.png
