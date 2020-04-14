@@ -1,4 +1,4 @@
-# Prerequisites
+targets/-# Prerequisites
 *.d
 
 # Compiled Object files
@@ -31,7 +31,20 @@
 *.out
 *.app
 
-#build
+# scala / sbt
+# (may want to keep parts of 'project')
+bin/
+project/
+target/
+build/
+.metals/
+.history
+.scala_dependencies
+.cache
+.cache-main
+*.class
+
+# Build
 Arthur/build/
 build/
 
@@ -39,3 +52,9 @@ build/
 *unit_test
 *.gcna
 *.gcno
+
+# Rust
+target/
+
+# Other
+*.png
