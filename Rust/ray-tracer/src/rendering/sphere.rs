@@ -19,27 +19,30 @@ impl Drawable for Sphere {
     /// passed as parameter and the camera using Al-Kashi's algorithm.
     fn hit(&self, ray: &Ray) -> Option<f64> {
 
+        // Square radius of the sphere, we'll need it later to speed up calculations.
+        let square_radius = self.radius.powf(2.0);
+
         // Calculating the distance between the camera and the origin of the sphere.
         let hypotenuse: Vector3<f64> = ray.origin - self.center;
 
         // Calculating the distance between the camera and a line starting from
         // the origin of the sphere using the scalar product of both vectors.
-        let len_to_center = hypotenuse.dot(ray.direction);
+        let len_to_angle = hypotenuse.dot(ray.direction);
 
         // Calculating the length of the line that crosses the hypotenuse starting from
         // the center of the sphere. -> pythagore.
         // CB² = AB² + AC² -> AC² = CB² (hypotenuse) - AB² (len_to_center).
-        let intersect_distance = hypotenuse.dot(hypotenuse) - len_to_center.powf(2.0);
+        let intersect_distance = hypotenuse.dot(hypotenuse) - len_to_angle.powf(2.0);
+
+        // Checking if the ray hit the sphere.
+        // if AC is smaller than the raised by two radius of the sphere, then the ray has hit the sphere.
+        if intersect_distance > square_radius {
+            return None;
+        }
 
         // Let's now calculate the distance between the point at the opposite of the 90° angle
         // and the intersection of the ray. The radius will act as the hypotenuse.
-        // let b_intersect_angle = 
-
-        // if AC is smaller than the radius of the sphere, then the ray has hit the sphere.
-        if intersect_distance < (self.radius * self.radius) {
-            return Some(intersect_distance);
-        }
-        None
+        Some(len_to_angle - (square_radius - intersect_distance).sqrt())
     }
 
     fn color(&self) -> Color {

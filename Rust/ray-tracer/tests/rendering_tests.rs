@@ -16,7 +16,7 @@ fn test_can_render_scene() {
         fov: 90.0,
         objects: vec![
             Box::new(rendering::sphere::Sphere {
-                center: Vector3::new(0.0, 0.0, -5.0),
+                center: Vector3::new(0.0, 10.0, -20.0),
                 radius: 1.0,
                 color: props::color::Color {
                     r: 255,
@@ -26,12 +26,22 @@ fn test_can_render_scene() {
                 }
             }),
             Box::new(rendering::sphere::Sphere {
-                center: Vector3::new(1.0, 0.0, -4.0),
+                center: Vector3::new(-0.5, 0.0, -3.0),
                 radius: 1.0,
                 color: props::color::Color {
                     r: 0,
                     g: 0,
                     b: 255,
+                    a: 255
+                }
+            }),
+            Box::new(rendering::sphere::Sphere {
+                center: Vector3::new(0.5, 0.0, -3.0),
+                radius: 1.0,
+                color: props::color::Color {
+                    r: 0,
+                    g: 255,
+                    b: 0,
                     a: 255
                 }
             })
