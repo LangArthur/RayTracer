@@ -6,5 +6,5 @@ pub trait Drawable {
     fn hit(&self, ray: &Ray) -> Option<f64>;
 
     // To optimise with lifetimes.
-    fn color(&self) -> Color;
+    fn color(&self) -> &Color;
 }

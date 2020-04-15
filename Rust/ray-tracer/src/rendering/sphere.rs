@@ -13,42 +13,50 @@ pub struct Sphere {
     pub color:  Color
 }
 
+impl Sphere {
+
+    pub fn new(center: Vector3<f64>, radius: f64, color: Color) -> Sphere {
+        Sphere {
+            center,
+            radius,
+            color
+        }
+    }
+}
+
 impl Drawable for Sphere {
+
+    /// A function that calculates the distance between a point hit by the ray
+    /// passed as parameter and the camera using the pythagorian formula.
     fn hit(&self, ray: &Ray) -> Option<f64> {
 
-        // A *-----* B
-        //   |  --
-        // C *--
-
-        // len_to_center      = AB
-        // hypotenuse         = CB
-        // intersect_distance = AC -> That's what we need to find.
+        // Square radius of the sphere, we'll need it later to speed up calculations.
+        let rad_sqrt = self.radius * self.radius;
 
         // Calculating the distance between the camera and the origin of the sphere.
-        let len_to_center: Vector3<f64> = ray.origin - self.center;
+        let hypotenuse: Vector3<f64> = self.center - ray.origin;
 
         // Calculating the distance between the camera and a line starting from
         // the origin of the sphere using the scalar product of both vectors.
-        let hypotenuse = len_to_center.dot(ray.direction);
+        let from_cam = hypotenuse.dot(ray.direction);
 
         // Calculating the length of the line that crosses the hypotenuse starting from
         // the center of the sphere. -> pythagore.
         // CB² = AB² + AC² -> AC² = CB² (hypotenuse) - AB² (len_to_center).
-        let intersect_distance = len_to_center.dot(len_to_center) - hypotenuse * hypotenuse;
+        let inter_dist_sqrt = hypotenuse.dot(hypotenuse) - from_cam * from_cam;
 
-        // if AC is smaller than the radius of the sphere, then the ray has hit the sphere.
-        if intersect_distance < (self.radius * self.radius) {
-            return Some(intersect_distance);
+        // Checking if the ray hit the sphere.
+        // if AC is smaller than the raised by two radius of the sphere, then the ray has hit the sphere.
+        if inter_dist_sqrt > rad_sqrt {
+            return None;
         }
-        None
+
+        // let's now calculate the distance between the point at the opposite of the 90° angle
+        // and the intersection of the ray. The radius will act as the hypotenuse.
+        Some(from_cam - (rad_sqrt - inter_dist_sqrt).sqrt())
     }
 
-    fn color(&self) -> Color {
-        Color {
-            r: self.color.r,
-            g: self.color.g,
-            b: self.color.b,
-            a: self.color.a,
-        }
+    fn color(&self) -> &Color {
+        &self.color
     }
 }
