@@ -21,7 +21,8 @@ namespace raytracer
             ~Scene();
 
             void push(const std::shared_ptr<IPrimitive> &obj);
-            void render();
+            void render(const int &imgX, const int &imgY);
+            void debug();
 
         private:
             std::vector<std::shared_ptr<IPrimitive>> _primitives;

@@ -14,3 +14,7 @@ raytracer::Camera::Camera(const math::Point3D<float> &pos) : _pos(pos)
 raytracer::Camera::~Camera()
 {
 }
+
+void raytracer::Camera::getView()
+{
+}
