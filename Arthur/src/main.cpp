@@ -10,7 +10,7 @@
 #include "Scene.hpp"
 #include "Triangle.hpp"
 
-int main(int argc, char const **argv)
+int main([[maybe_unused]]int argc, [[maybe_unused]]char const **argv)
 {
     raytracer::Scene s;
     s.debug();
@@ -21,5 +21,7 @@ int main(int argc, char const **argv)
     std::shared_ptr<raytracer::IPrimitive> tri = std::make_shared<raytracer::Triangle>(a, b, c);
 
     s.push(tri);
+    s.debug();
+    s.render(1920, 1080);
     return 0;
 }

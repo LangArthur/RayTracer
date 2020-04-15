@@ -9,6 +9,8 @@
 
 #include <opencv2/opencv.hpp>
 
+constexpr const auto IMG_PATH = "./output.png";
+
 namespace raytracer
 {
     class Renderer {

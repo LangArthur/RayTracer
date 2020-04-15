@@ -17,7 +17,7 @@ raytracer::Renderer::~Renderer()
 
 void raytracer::Renderer::createImage(const int &imgX, const int &imgY)
 {
-    cv::Mat img(imgY, imgX, CV_8U);
-    std::cout << img << std::endl;
-    // cv::imwrite(IMG_PATH, img);
+    cv::Mat img(imgY, imgX, CV_8UC3, cv::Scalar(0, 0, 0));
+    // std::cout << img << std::endl;
+    cv::imwrite(IMG_PATH, img);
 }
