@@ -15,36 +15,39 @@ fn test_can_render_scene() {
         height: 1000,
         fov: 90.0,
         objects: vec![
-            Box::new(rendering::sphere::Sphere::new(
-                Vector3::new(0.0, 0.0, -3.0),
-                1.0,
-                props::color::Color {
+            Box::new(rendering::sphere::Sphere {
+                center: Vector3::new(0.0, 0.0, -3.0),
+                radius: 1.0,
+                color: props::color::Color {
                     r: 255,
                     g: 0,
                     b: 0,
                     a: 255
                 }
-            )),
-            Box::new(rendering::sphere::Sphere::new(
-                Vector3::new(-0.5, 0.0, -3.0),
-                1.0,
-                props::color::Color {
+            }
+            ),
+            Box::new(rendering::sphere::Sphere {
+                center: Vector3::new(-0.5, 0.0, -3.0),
+                radius: 1.0,
+                color: props::color::Color {
                     r: 0,
                     g: 0,
                     b: 255,
                     a: 255
                 }
-            )),
-            Box::new(rendering::sphere::Sphere::new(
-                Vector3::new(0.5, 0.0, -3.0),
-                1.0,
-                props::color::Color {
+            }
+            ),
+            Box::new(rendering::sphere::Sphere {
+                center: Vector3::new(0.5, 0.0, -3.0),
+                radius: 1.0,
+                color: props::color::Color {
                     r: 0,
                     g: 255,
                     b: 0,
                     a: 255
                 }
-            ))
+            }
+            )
         ]
     };
 

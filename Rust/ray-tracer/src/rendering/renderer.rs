@@ -9,13 +9,13 @@ use crate::rendering::object_traits::Drawable;
 /// Takes a scene in parameter and render it to an image with the image crate.
 pub fn render(scene: &rendering::scene::Scene) -> Option<image::DynamicImage> {
 
-    // Creating a new image object.
-    let mut image = image::DynamicImage::new_rgb8(scene.width, scene.height);
-
     // Checking if their is something to render.
     if scene.objects.is_empty() {
-       return None;
+        return None;
     }
+
+    // Creating a new image object.
+    let mut image = image::DynamicImage::new_rgb8(scene.width, scene.height);
 
     // Iterating trough the pixels of the image.
     for x in 0..scene.width {
