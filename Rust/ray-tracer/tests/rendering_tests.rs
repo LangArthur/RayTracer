@@ -47,6 +47,17 @@ fn test_can_render_scene() {
                     a: 255
                 }
             }
+            ),
+            Box::new(rendering::plane::Plane {
+                origin: Vector3::new(0.0, -1.0, -3.0),
+                normal: Vector3::new(0.0, -90.0, 10.0),
+                color: props::color::Color {
+                    r: 255,
+                    g: 255,
+                    b: 255,
+                    a: 128
+                }
+            }
             )
         ]
     };
