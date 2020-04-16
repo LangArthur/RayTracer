@@ -5,6 +5,7 @@ use image;
 use image::GenericImage;
 
 use crate::rendering::object_traits::Drawable;
+use crate::miscellaneous::progressbar::ProgressBar;
 
 /// Takes a scene in parameter and render it to an image with the image crate.
 pub fn render(scene: &rendering::scene::Scene) -> Option<image::DynamicImage> {
@@ -17,16 +18,33 @@ pub fn render(scene: &rendering::scene::Scene) -> Option<image::DynamicImage> {
     // Creating a new image object.
     let mut image = image::DynamicImage::new_rgb8(scene.width, scene.height);
 
-    // Iterating trough the pixels of the image.
-    for x in 0..scene.width {
-        for y in 0..scene.height {
-            render_pixel_on_image(x, y, scene, &mut image);
-        }
-    }
+    // Dividing the work with four threads, this needs to be dynamic.
+    // TODO : Make the number of thread running customizable.
+    render_part_of_image(0, scene.width, &scene, &mut image);
+
     Some(image)
 }
 
-fn render_pixel_on_image(x: u32, y: u32, scene: &rendering::scene::Scene, image: &mut image::DynamicImage) {
+fn render_part_of_image(start: u32,
+                        end: u32,
+                        scene: &rendering::scene::Scene,
+                        image: &mut image::DynamicImage) {
+
+    let mut bar = ProgressBar::new((end * scene.height) as f64, 10);
+
+    // Iterating trough the pixels of the image.
+    for x in start..end {
+        for y in 0..scene.height {
+            render_pixel_on_image(x, y, scene, image);
+            bar.inc(1.0);
+        }
+    }
+}
+
+fn render_pixel_on_image(x: u32,
+                         y: u32,
+                         scene: &rendering::scene::Scene,
+                         image: &mut image::DynamicImage) {
     // Tracing a ray.
     let ray = props::ray::Ray::create_prime(x, y, scene);
 
@@ -47,7 +65,7 @@ fn render_pixel_on_image(x: u32, y: u32, scene: &rendering::scene::Scene, image:
                     curr_dist_min = Some(d);
                 }
             },
-            None => ()
+            None    => ()
         }
     }
 

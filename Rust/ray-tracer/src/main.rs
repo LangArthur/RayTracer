@@ -8,7 +8,6 @@ use image;
 use image::GenericImageView;
 
 fn main() {
-
     let scene = rendering::scene::Scene {
         width: 1000,
         height: 1000,
@@ -21,10 +20,9 @@ fn main() {
                     r: 255,
                     g: 0,
                     b: 0,
-                    a: 255
-                }
-            }
-            ),
+                    a: 255,
+                },
+            }),
             Box::new(rendering::sphere::Sphere {
                 center: Vector3::new(-0.5, 0.0, -3.0),
                 radius: 1.0,
@@ -32,10 +30,9 @@ fn main() {
                     r: 0,
                     g: 0,
                     b: 255,
-                    a: 255
-                }
-            }
-            ),
+                    a: 255,
+                },
+            }),
             Box::new(rendering::sphere::Sphere {
                 center: Vector3::new(0.5, 0.0, -3.0),
                 radius: 1.0,
@@ -43,10 +40,9 @@ fn main() {
                     r: 0,
                     g: 255,
                     b: 0,
-                    a: 255
-                }
-            }
-            ),
+                    a: 255,
+                },
+            }),
             Box::new(rendering::plane::Plane {
                 origin: Vector3::new(0.0, -3.0, -5.0),
                 normal: Vector3::new(0.0, -1.0, 0.0),
@@ -54,10 +50,9 @@ fn main() {
                     r: 255,
                     g: 255,
                     b: 255,
-                    a: 50
-                }
-            }
-            ),
+                    a: 50,
+                },
+            }),
             Box::new(rendering::plane::Plane {
                 origin: Vector3::new(0.0, 0.0, -5.0),
                 normal: Vector3::new(0.0, 0.0, -1.0),
@@ -65,16 +60,15 @@ fn main() {
                     r: 128,
                     g: 128,
                     b: 128,
-                    a: 50
-                }
-            }
-            )
-        ]
+                    a: 50,
+                },
+            }),
+        ],
     };
 
     let img: image::DynamicImage = match rendering::renderer::render(&scene) {
         Some(image) => image,
-        None => panic!("There is no object to render.")
+        None => panic!("There is no object to render."),
     };
     img.save("test.png").unwrap();
     assert_eq!(scene.width, img.width());
