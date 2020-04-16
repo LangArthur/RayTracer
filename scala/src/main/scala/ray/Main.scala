@@ -7,7 +7,7 @@ import java.nio.Buffer
 
 import Vec3._
 import Render._
-import Ray._
+import Scene._
 import Color.Color
 
 object Main

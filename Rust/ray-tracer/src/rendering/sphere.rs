@@ -13,17 +13,6 @@ pub struct Sphere {
     pub color:  Color
 }
 
-impl Sphere {
-
-    pub fn new(center: Vector3<f64>, radius: f64, color: Color) -> Sphere {
-        Sphere {
-            center,
-            radius,
-            color
-        }
-    }
-}
-
 impl Drawable for Sphere {
 
     /// A function that calculates the distance between a point hit by the ray
