@@ -4,9 +4,6 @@ use raytracer::rendering::scene::Scene;
 use raytracer::props::color::Color;
 use raytracer::props::ray::Ray;
 
-use image;
-use image::GenericImageView;
-
 #[test]
 fn intersect_plane_test() {
 

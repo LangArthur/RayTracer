@@ -11,8 +11,8 @@ use image::GenericImageView;
 fn test_can_render_scene() {
 
     let scene = rendering::scene::Scene {
-        width: 1000,
-        height: 1000,
+        width: 10,
+        height: 10,
         fov: 90.0,
         objects: vec![
             Box::new(rendering::sphere::Sphere {
@@ -77,7 +77,6 @@ fn test_can_render_scene() {
         Some(image) => image,
         None => panic!("There is no object to render.")
     };
-    img.save("test.png").unwrap();
     assert_eq!(scene.width, img.width());
     assert_eq!(scene.height, img.height());
 }
