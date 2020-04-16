@@ -63,3 +63,27 @@ fn do_not_intersect_plane_test() {
         None    => assert!(true)
     };
 }
+
+use raytracer::rendering::object_traits::Drawable;
+
+#[test]
+fn get_plane_color_test() {
+
+    let plane_1 = Plane {
+        origin: Vector3::new(0.0, 0.0, -5.0),
+        normal: Vector3::new(1.0, 1.0, 1.0),
+        color:  Color {
+            r: 128,
+            g: 255,
+            b: 50,
+            a: 10,
+        }
+    };
+
+    let plane_ref = plane_1.color();
+
+    assert_eq!(plane_1.color.r, plane_ref.r);
+    assert_eq!(plane_1.color.g, plane_ref.g);
+    assert_eq!(plane_1.color.b, plane_ref.b);
+    assert_eq!(plane_1.color.a, plane_ref.a);
+}
