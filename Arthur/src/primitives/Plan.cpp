@@ -17,7 +17,7 @@ bool raytracer::Plan::intersect(const Ray &ray)
 {
     float denom = ray.direction().dot(_norm);
     if (denom > 1.e-6) {
-        float t = math::toVector(ray.origin(), _orientation).dot(_norm) / denom;
+        float t = (math::toVector(_orientation, ray.origin()).dot(_norm)) / denom;
         return (t >= 0);
     }
     return false;

@@ -31,7 +31,6 @@ void raytracer::Scene::render(const int &imgX, const int &imgY)
             Eigen::Vector3f direction(mx, my, z);
             raytracer::Ray r(direction, {0, 0, 0});
             pixels.push_back(getColor(r));
-            // std::cout << getColor(r) << std::endl;
         }
     }
 
