@@ -19,7 +19,7 @@ namespace raytracer
             Camera(const math::Point3D<float> &pos);
             ~Camera();
 
-            void getView();
+            void getView(const int &x, const int &y);
 
         private:
             math::Point3D<float> _pos;

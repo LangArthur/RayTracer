@@ -15,6 +15,6 @@ raytracer::Camera::~Camera()
 {
 }
 
-void raytracer::Camera::getView()
+void raytracer::Camera::getView(const int &x, const int &y)
 {
 }
