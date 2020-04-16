@@ -78,9 +78,9 @@ namespace math {
     };
 
         template<typename T>
-        static Eigen::Vector3d toVector(const Point3D<T> &fst, const Point3D<T> &sec)
+        static Eigen::Vector3f toVector(const Point3D<T> &fst, const Point3D<T> &sec)
         {
-            Eigen::Vector3d v(sec.x() - fst.x(), sec.y() - fst.y(), sec.z() - fst.z());
+            Eigen::Vector3f v(sec.x() - fst.x(), sec.y() - fst.y(), sec.z() - fst.z());
             return v;
         }
 }
