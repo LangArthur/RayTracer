@@ -14,15 +14,15 @@ namespace raytracer
     class Ray {
 
         public:
-            Ray(const Eigen::Vector3d &direction, const math::Point3D<float> &origin);
+            Ray(const Eigen::Vector3f &direction, const math::Point3D<float> &origin);
             ~Ray();
 
-            inline const Eigen::Vector3d &direction() const { return _direction; };
+            inline const Eigen::Vector3f &direction() const { return _direction; };
 
             inline const math::Point3D<float> &origin() const { return _origin; };
 
         private:
-            Eigen::Vector3d _direction;
+            Eigen::Vector3f _direction;
             math::Point3D<float> _origin;
 
         };

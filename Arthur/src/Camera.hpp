@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include <Eigen/Dense>
+
 #include "Point3D.hpp"
 
 namespace raytracer
@@ -17,7 +19,11 @@ namespace raytracer
             Camera(const math::Point3D<float> &pos);
             ~Camera();
 
+            void getView(const int &x, const int &y);
+
         private:
             math::Point3D<float> _pos;
+            Eigen::Vector3f _lookAt;
+            float _zoom;
     };    
 }

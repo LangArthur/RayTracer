@@ -12,6 +12,9 @@
 namespace math
 {
     // to Implement for fun
+    //
+    // https://martin-thoma.com/solving-linear-equations-with-gaussian-elimination/
+    //
     // void GaussElimination(glm::mat3 system, glm::vec3 unknown)
     // {
 

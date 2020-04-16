@@ -17,5 +17,6 @@ namespace raytracer
             virtual ~IPrimitive() = default;
 
             virtual bool intersect(const Ray& ray) = 0;
+            // virtual std::pair<int> getColor() = 0;
     };
 }

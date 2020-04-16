@@ -8,6 +8,7 @@
 #pragma once
 
 #include <Eigen/Dense>
+#include <iostream>
 
 namespace math {
 
@@ -17,6 +18,19 @@ namespace math {
 
         public:
             Point3D(T x, T y, T z) : _x(x), _y(y), _z(z) {};
+            Point3D(std::initializer_list<T> l)
+            {
+                if (l.size() == 3) {
+                    auto i = l.begin();
+                    _x = (*i);
+                    i++;
+                    _y = (*i);
+                    i++;
+                    _z = (*i);
+                } else {
+                    std::cerr << "Invalid number of element to build math::Point3D" << std::endl;
+                }
+            };
             ~Point3D() {};
 
             inline const T x() const { return _x; };
@@ -64,9 +78,9 @@ namespace math {
     };
 
         template<typename T>
-        static Eigen::Vector3d toVector(const Point3D<T> &fst, const Point3D<T> &sec)
+        static Eigen::Vector3f toVector(const Point3D<T> &fst, const Point3D<T> &sec)
         {
-            Eigen::Vector3d v(sec.x() - fst.x(), sec.y() - fst.y(), sec.z() - fst.z());
+            Eigen::Vector3f v(sec.x() - fst.x(), sec.y() - fst.y(), sec.z() - fst.z());
             return v;
         }
 }

@@ -23,6 +23,7 @@ set(SRC_PRIMITIVES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/primitives/Triangle.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/primitives/Square.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/primitives/Sphere.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/primitives/Plan.cpp
 )
 
 ## General sources
