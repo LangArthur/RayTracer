@@ -24,6 +24,6 @@ int main([[maybe_unused]]int argc, [[maybe_unused]]char const **argv)
 
     s.push(tri);
     s.debug();
-    s.render(1920, 1080);
+    s.render(800, 600);
     return 0;
 }

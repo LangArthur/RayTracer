@@ -7,7 +7,7 @@
 
 #include "Plan.hpp"
 
-raytracer::Plan::Plan(const math::Point3D<float> &orientation, const Eigen::Vector3f &norm) : _orientation(orientation), _norm(norm)
+raytracer::Plan::Plan(const math::Point3D<float> &orientation, const Eigen::Vector3f &norm) : _orientation(orientation), _norm(norm), _color({255, 0, 0})
 { }
 
 raytracer::Plan::~Plan()
@@ -21,4 +21,9 @@ bool raytracer::Plan::intersect(const Ray &ray)
         return (t >= 0);
     }
     return false;
+}
+
+cv::Vec<unsigned char, 3> raytracer::Plan::getColor()
+{
+    return (_color);
 }

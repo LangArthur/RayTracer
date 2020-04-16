@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include <opencv2/opencv.hpp>
+
 #include "Ray.hpp"
 
 namespace raytracer
@@ -17,6 +19,6 @@ namespace raytracer
             virtual ~IPrimitive() = default;
 
             virtual bool intersect(const Ray& ray) = 0;
-            // virtual std::pair<int> getColor() = 0;
+            virtual cv::Vec<unsigned char, 3> getColor() = 0;
     };
 }

@@ -20,9 +20,11 @@ namespace raytracer
             ~Plan();
 
             bool intersect(const Ray &ray) override;
+            cv::Vec<unsigned char, 3> getColor() override;
 
         private:
             math::Point3D<float> _orientation;
             Eigen::Vector3f _norm;
+            cv::Vec<unsigned char, 3> _color;
     };
 }
