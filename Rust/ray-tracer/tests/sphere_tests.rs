@@ -1,20 +1,20 @@
 use cgmath::Vector3;
-use raytracer::rendering::plane::Plane;
+use raytracer::rendering::sphere::Sphere;
 use raytracer::rendering::scene::Scene;
 use raytracer::props::color::Color;
 use raytracer::props::ray::Ray;
 
 #[test]
-fn intersect_plane_test() {
+fn intersect_sphere_test() {
 
     let scene = Scene {
         width: 1000,
         height: 1000,
         fov: 90.0,
         objects: vec![
-            Box::new(Plane {
-                origin: Vector3::new(0.0, -3.0, -5.0),
-                normal: Vector3::new(0.0, -1.0,  0.0),
+            Box::new(Sphere {
+                center: Vector3::new(0.0, 0.0, -5.0),
+                radius: 2.0,
                 color:  Color {
                     r: 255,
                     g: 255,
@@ -26,25 +26,25 @@ fn intersect_plane_test() {
         ]
     };
 
-    let ray = Ray::create_prime(900, 900, &scene);
+    let ray = Ray::create_prime(500, 500, &scene);
 
     match scene.objects[0].hit(&ray) {
         Some(_) => assert!(true),
-        None     => assert!(false)
+        None    => assert!(false)
     };
 }
 
 #[test]
-fn do_not_intersect_plane_test() {
+fn do_not_intersect_sphere_test() {
 
     let scene = Scene {
         width: 1000,
         height: 1000,
         fov: 90.0,
         objects: vec![
-            Box::new(Plane {
-                origin: Vector3::new(0.0, -3.0, -5.0),
-                normal: Vector3::new(0.0, -1.0,  0.0),
+            Box::new(Sphere {
+                center: Vector3::new(0.0, 0.0, -5.0),
+                radius: 1.0,
                 color:  Color {
                     r: 255,
                     g: 255,
@@ -56,7 +56,7 @@ fn do_not_intersect_plane_test() {
         ]
     };
 
-    let ray = Ray::create_prime(100, 200, &scene);
+    let ray = Ray::create_prime(100, 100, &scene);
 
     match scene.objects[0].hit(&ray) {
         Some(_) => assert!(false),
