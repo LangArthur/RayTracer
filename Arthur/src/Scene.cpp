@@ -20,7 +20,7 @@ void raytracer::Scene::push(const std::shared_ptr<IPrimitive> &obj)
 
 void raytracer::Scene::render(const int &imgX, const int &imgY)
 {
-    float z = 1;
+    float z = -1;
     float imgRatio = imgX / imgY;
     math::Point3D<float> origin = {0, 0, 0};
     std::vector<cv::Vec<unsigned char, 3>> pixels;
@@ -40,13 +40,16 @@ void raytracer::Scene::render(const int &imgX, const int &imgY)
 void raytracer::Scene::debug()
 {
     std::cout << "Scene :\n" << "Number of primitives : " << _primitives.size() << std::endl;
+    for (auto &prim : _primitives)
+        prim.get()->debug();
 }
 
 cv::Vec<unsigned char, 3> raytracer::Scene::getColor(const Ray &r)
 {
     for (auto &prim : _primitives) {
-        if (prim.get()->intersect(r))
+        if (prim.get()->intersect(r)) {
             return (prim.get()->getColor());
+        }
     }
     return (_bgColor);
 }

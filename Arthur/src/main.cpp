@@ -17,9 +17,9 @@ int main([[maybe_unused]]int argc, [[maybe_unused]]char const **argv)
     // math::Point3D<float> a({1, 2, 1});
     // math::Point3D<float> b({4, 3, 0});
     // math::Point3D<float> c({-3, 2, 1});
-    Eigen::Vector3f direction(0, 1, 1);
-    math::Point3D<float> a({0, -3, 0});
-    std::shared_ptr<raytracer::IPrimitive> tri = std::make_shared<raytracer::Plan>(a, direction);
+    Eigen::Vector3f normal(0, -1, 0);
+    math::Point3D<float> d({0, 0, -5});
+    std::shared_ptr<raytracer::IPrimitive> tri = std::make_shared<raytracer::Plan>(d, normal);
 
     s.push(tri);
     s.debug();

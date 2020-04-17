@@ -18,6 +18,7 @@ namespace raytracer
         public:
             virtual ~IPrimitive() = default;
 
+            virtual void debug() = 0;
             virtual bool intersect(const Ray& ray) = 0;
             virtual cv::Vec<unsigned char, 3> getColor() = 0;
     };
