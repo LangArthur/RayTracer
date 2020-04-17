@@ -21,11 +21,11 @@ namespace raytracer
 
             void debug() override;
             bool intersect(const Ray &ray) override;
-            cv::Vec<unsigned char, 3> getColor() override;
+            std::array<unsigned char, 3> getColor() override;
 
         private:
             math::Point3D<float> _point;
             Eigen::Vector3f _norm;
-            cv::Vec<unsigned char, 3> _color;
+            std::array<unsigned char, 3> _color;
     };
 }

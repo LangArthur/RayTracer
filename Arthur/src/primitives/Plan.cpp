@@ -29,7 +29,7 @@ bool raytracer::Plan::intersect(const Ray &ray)
     return false;
 }
 
-cv::Vec<unsigned char, 3> raytracer::Plan::getColor()
+std::array<unsigned char, 3> raytracer::Plan::getColor()
 {
     return (_color);
 }

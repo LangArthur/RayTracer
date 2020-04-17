@@ -21,6 +21,7 @@ namespace raytracer
             inline const math::Point3D<float> &center() const { return _center; };
             inline const float &radius() const { return _radius; };
 
+            void debug() override;
             bool intersect(const Ray& ray) override;
 
         private:

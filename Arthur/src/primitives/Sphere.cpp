@@ -27,3 +27,9 @@ bool raytracer::Sphere::intersect(const raytracer::Ray &ray)
     //     return true;
     return false;
 }
+
+void raytracer::Sphere::debug()
+{
+    std::cout << "Sphere:" << std::endl;
+    std::cout << "Center: " << _center << "\tradius : " << _radius << std::endl;
+ }

@@ -23,7 +23,7 @@ void raytracer::Scene::render(const int &imgX, const int &imgY)
     float z = -1;
     float imgRatio = imgX / imgY;
     math::Point3D<float> origin = {0, 0, 0};
-    std::vector<cv::Vec<unsigned char, 3>> pixels;
+    std::vector<std::array<unsigned char, 3>> pixels;
     for (float y = 0; y < imgY; y++) {
         for (float x = 0; x < imgX; x++) {
             float mx = 2 * ((x + 0.5) / imgX) - 1 * imgRatio;
@@ -44,7 +44,7 @@ void raytracer::Scene::debug()
         prim.get()->debug();
 }
 
-cv::Vec<unsigned char, 3> raytracer::Scene::getColor(const Ray &r)
+std::array<unsigned char, 3> raytracer::Scene::getColor(const Ray &r)
 {
     for (auto &prim : _primitives) {
         if (prim.get()->intersect(r)) {

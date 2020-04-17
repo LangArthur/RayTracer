@@ -19,6 +19,6 @@ namespace raytracer
             Renderer();
             ~Renderer();
 
-            void createImage(const int &imgX, const int &imgY, std::vector<cv::Vec<unsigned char, 3>> &pix);
+            void createImage(const int &imgX, const int &imgY, std::vector<std::array<unsigned char, 3>> &pix);
     };    
 }
