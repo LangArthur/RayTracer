@@ -7,7 +7,7 @@
 
 #include "Sphere.hpp"
 
-raytracer::Sphere::Sphere(const math::Point3D<float> &center, const float &radius) : _center(center), _radius(radius)
+raytracer::Sphere::Sphere(const math::Point3D<float> &center, const float &radius) : _center(center), _radius(radius), _color({0, 255, 0})
 { }
 
 raytracer::Sphere::~Sphere()
@@ -15,21 +15,33 @@ raytracer::Sphere::~Sphere()
 
 bool raytracer::Sphere::intersect(const raytracer::Ray &ray)
 {
-    // float a = 1;
-    // glm::vec3 OC = math::toVector(ray.origin(), _center);
-    // float b = glm::dot(ray.direction(), OC);
-    // float c = glm::length(OC) - _radius * _radius;
 
-    // float delta = (b * b) - (a * c);
-    // if (delta < 0)
-    //     return false;
-    // else
-    //     return true;
-    return false;
+    float t = math::toVector(ray.origin(), _center).dot(ray.direction());
+
+    // intersection point the ray
+    Eigen::Vector3f p = ray.direction() * t;
+
+    float y = (math::toVector(_center) - p).norm();
+    if (y < _radius) {
+        return true;
+        // float x = sqrt(_radius * _radius - y * y);
+
+        // float t1 = t - x;
+        // float t2 = t + x;
+    } else {
+        return false;
+    }
+    // float a = 1;
+    // float b = 2 * ray.origin() * 
 }
 
 void raytracer::Sphere::debug()
 {
     std::cout << "Sphere:" << std::endl;
     std::cout << "Center: " << _center << "\tradius : " << _radius << std::endl;
- }
+}
+
+std::array<unsigned char, 3> raytracer::Sphere::getColor()
+{
+     return (_color);
+}

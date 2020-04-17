@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include <ctgmath>
+
 #include "IPrimitive.hpp"
 #include "Point3D.hpp"
 
@@ -23,9 +25,11 @@ namespace raytracer
 
             void debug() override;
             bool intersect(const Ray& ray) override;
+            std::array<unsigned char, 3> getColor() override;
 
         private:
             math::Point3D<float> _center;
             float _radius;
+            std::array<unsigned char, 3> _color;
     };
 }

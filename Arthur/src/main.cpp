@@ -9,6 +9,7 @@
 
 #include "Scene.hpp"
 #include "Plan.hpp"
+#include "Sphere.hpp"
 
 int main([[maybe_unused]]int argc, [[maybe_unused]]char const **argv)
 {
@@ -18,10 +19,13 @@ int main([[maybe_unused]]int argc, [[maybe_unused]]char const **argv)
     // math::Point3D<float> b({4, 3, 0});
     // math::Point3D<float> c({-3, 2, 1});
     Eigen::Vector3f normal(0, -1, 0);
-    math::Point3D<float> d({0, 0, -5});
-    std::shared_ptr<raytracer::IPrimitive> tri = std::make_shared<raytracer::Plan>(d, normal);
+    math::Point3D<float> p({0, 0, -5});
+    math::Point3D<float> c({0, -2, 5});
+    std::shared_ptr<raytracer::IPrimitive> sph = std::make_shared<raytracer::Sphere>(c, 1);
+    std::shared_ptr<raytracer::IPrimitive> plan = std::make_shared<raytracer::Plan>(p, normal);
 
-    s.push(tri);
+    s.push(sph);
+    s.push(plan);
     s.debug();
     s.render(1920, 1080);
     return 0;

@@ -85,6 +85,13 @@ namespace math {
     }
 
     template<typename T>
+    static Eigen::Vector3f toVector(const Point3D<T> &pt)
+    {
+        Eigen::Vector3f v (pt.x(), pt.y(), pt.z());
+        return v;
+    }
+
+    template<typename T>
     std::ostream &operator<<(std::ostream &os, const Point3D<T> &toDisp)
     {
         os << "[" << toDisp.x() << "," << toDisp.y() << "," << toDisp.z() << "]";
