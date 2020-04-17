@@ -22,6 +22,9 @@ fn main() {
                     b: 0,
                     a: 255,
                 },
+                albedo: props::albedo::Albedo {
+                    intensity: 0.1
+                }
             }),
             Box::new(rendering::sphere::Sphere {
                 center: Vector3::new(-0.5, 0.0, -3.0),
@@ -32,6 +35,9 @@ fn main() {
                     b: 255,
                     a: 255,
                 },
+                albedo: props::albedo::Albedo {
+                    intensity: 0.1
+                }
             }),
             Box::new(rendering::sphere::Sphere {
                 center: Vector3::new(2.0, 0.0, -3.0),
@@ -42,6 +48,9 @@ fn main() {
                     b: 0,
                     a: 255,
                 },
+                albedo: props::albedo::Albedo {
+                    intensity: 0.1
+                }
             }),
             Box::new(rendering::plane::Plane {
                 origin: Vector3::new(0.0, -3.0, -5.0),
@@ -52,6 +61,9 @@ fn main() {
                     b: 255,
                     a: 50,
                 },
+                albedo: props::albedo::Albedo {
+                    intensity: 0.1
+                }
             }),
             Box::new(rendering::plane::Plane {
                 origin: Vector3::new(0.0, 0.0, -5.0),
@@ -62,8 +74,24 @@ fn main() {
                     b: 128,
                     a: 50,
                 },
+                albedo: props::albedo::Albedo {
+                    intensity: 0.1
+                }
             }),
         ],
+        lights: vec![
+            rendering::light::Light {
+                origin:    Vector3::new(0.0, 0.0, -5.0),
+                direction: Vector3::new(0.0, 0.0, -1.0),
+                color: props::color::Color {
+                    r: 255,
+                    g: 255,
+                    b: 255,
+                    a: 255,
+                },
+                intensity: 1.0
+            }
+        ]
     };
 
     let img: image::DynamicImage = match rendering::renderer::render(&scene) {
