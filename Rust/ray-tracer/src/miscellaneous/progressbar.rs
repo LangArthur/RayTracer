@@ -3,7 +3,6 @@ use std::thread;
 
 pub struct ProgressBar {
 
-    handler:    thread::JoinHandle<()>,
     sender:     mpsc::Sender<f64>,
 }
 
@@ -13,27 +12,32 @@ impl ProgressBar {
 
         let (tx, rx): (mpsc::Sender<f64>, mpsc::Receiver<f64>) = mpsc::channel();
 
-        ProgressBar {
-            handler: thread::spawn(move || {
+        thread::spawn(move || {
 
-                let loading: [char; 4] = ['-', '\\', '|', '/'];
-                let mut i = 0;
-                let max = max_value;
-                let mut progress = 0.0;
-                let mut percentage = 0.0;
-                // let mut lines = number_of_lines;
-                // let mut bars = 0;
+            let max = max_value;
+            let mut progress = 0.0;
+            let lines = number_of_lines;
+            let loading: [char; 4] = ['-', '\\', '|', '/'];
+            
+            let mut i = 0;
+            for received in rx {
 
-                for received in rx {
+                progress += received;
 
-                    progress += received;
-                    percentage = progress / max * 100.0;
-
-                    print!("\r[{}] progress: {}%", loading[i], percentage as u32);
-                    i = if i < 3 { i + 1 } else { 0 };
+                print!("\r[{}] {}% [", loading[i], (progress / max * 100.0) as u32);
+                for _ in 0..(progress / max * lines as f64) as u32 {
+                    print!("*");
                 }
-            }),
-            sender: tx,
+                for _ in 0..(lines - (progress / max * lines as f64) as u32) {
+                    print!(" ");
+                }
+                print!("]");
+                i = if i < 3 { i + 1 } else { 0 };
+            }
+        });
+
+        ProgressBar {
+            sender: tx
         }
     }
 

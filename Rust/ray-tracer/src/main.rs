@@ -34,7 +34,7 @@ fn main() {
                 },
             }),
             Box::new(rendering::sphere::Sphere {
-                center: Vector3::new(0.5, 0.0, -3.0),
+                center: Vector3::new(2.0, 0.0, -3.0),
                 radius: 1.0,
                 color: props::color::Color {
                     r: 0,

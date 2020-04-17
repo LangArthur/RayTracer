@@ -30,14 +30,14 @@ fn render_part_of_image(start: u32,
                         scene: &rendering::scene::Scene,
                         image: &mut image::DynamicImage) {
 
-    let mut bar = ProgressBar::new((end * scene.height) as f64, 10);
+    let mut bar = ProgressBar::new((end * scene.height) as f64, 20);
 
     // Iterating trough the pixels of the image.
     for x in start..end {
         for y in 0..scene.height {
             render_pixel_on_image(x, y, scene, image);
-            bar.inc(1.0);
         }
+        bar.inc(scene.height as f64);
     }
 }
 
