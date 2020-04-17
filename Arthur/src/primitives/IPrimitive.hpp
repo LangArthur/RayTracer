@@ -13,6 +13,8 @@
 
 namespace raytracer
 {
+    using Color = std::array<unsigned char, 3>;
+
     class IPrimitive {
 
         public:

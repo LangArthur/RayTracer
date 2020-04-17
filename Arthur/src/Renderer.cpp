@@ -15,7 +15,7 @@ raytracer::Renderer::~Renderer()
 {
 }
 
-void raytracer::Renderer::createImage(const int &imgX, const int &imgY, std::vector<std::array<unsigned char, 3>> &pix)
+void raytracer::Renderer::createImage(const int &imgX, const int &imgY, const std::vector<std::array<unsigned char, 3>> &pix)
 {
     cv::Mat img(imgY, imgX, CV_8UC3, cv::Scalar(0, 0, 0));
     int i = 0;

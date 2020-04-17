@@ -26,13 +26,9 @@ namespace raytracer
             void render(const int &imgX, const int &imgY);
             void debug();
 
-            std::array<unsigned char, 3> getColor(const Ray &y);
-
         private:
             std::vector<std::shared_ptr<IPrimitive>> _primitives;
             Renderer _rend;
-            // Camera _cam;
-
-            std::array<unsigned char, 3> _bgColor;
+            Camera _cam;
     };
 }

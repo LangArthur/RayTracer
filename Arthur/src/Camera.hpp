@@ -8,22 +8,31 @@
 #pragma once
 
 #include <Eigen/Dense>
+#include <memory>
+#include <vector>
 
 #include "Point3D.hpp"
+#include "IPrimitive.hpp"
 
 namespace raytracer
 {
     class Camera {
 
         public:
-            Camera(const math::Point3D<float> &pos);
+            Camera(const std::vector<std::shared_ptr<IPrimitive>> &prim);
             ~Camera();
 
-            void getView(const int &x, const int &y);
+            inline void changeColor(raytracer::Color color);
+
+            std::vector<raytracer::Color> getView(const int &x, const int &y);
+            raytracer::Color getColor(const Ray &y);
 
         private:
             math::Point3D<float> _pos;
             Eigen::Vector3f _lookAt;
-            float _zoom;
+            float _angle;
+            raytracer::Color _bgColor;
+
+            const std::vector<std::shared_ptr<IPrimitive>> &_prim;
     };    
 }

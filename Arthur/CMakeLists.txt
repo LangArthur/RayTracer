@@ -32,6 +32,7 @@ set(SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Ray.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Scene.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/Renderer.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Camera.cpp
 )
 
 ## Include headers to program
