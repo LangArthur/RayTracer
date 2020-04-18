@@ -15,11 +15,11 @@ pub struct Ray {
 
 impl Ray {
 
-    /// Creating a ray with an origin.
-    pub fn new(x: f64, y: f64, z: f64) -> Ray {
+    /// Creating a ray with an origin and a direction.
+    pub fn new(origin: Vector3<f64>, direction: Vector3<f64>) -> Ray {
         Ray {
-            origin:    Vector3::new(x, y, z),
-            direction: Vector3 { x: 0.0, y: 0.0, z: 0.0 }
+            origin,
+            direction
         }
     }
 
@@ -45,11 +45,11 @@ impl Ray {
     pub fn create_prime(x: u32, y: u32, scene: &Scene) -> Ray {
 
         // We first have to look for the aspect ratio of the image.
-        // let aspect_ratio = if scene.width > scene.height {
-        //     scene.width as f64 / scene.height as f64
-        // } else {
-        //     1.0
-        // };
+        let aspect_ratio = if scene.width > scene.height {
+            scene.width as f64 / scene.height as f64
+        } else {
+            1.0
+        };
 
         // We stil need the fov slide, but I don't know how to do it yet.
         // let fov = ??;
@@ -58,7 +58,7 @@ impl Ray {
         // Mul by 2 and sub by 1 transforms the result in the [-1; 1] bounds.
         // For the y plane coordinates, where calculating the inverse because
         // positive y are going downwards.
-        let image_plane_x =  ((x as f64) / scene.width  as f64) * 2.0 - 1.0;
+        let image_plane_x =  (((x as f64) / scene.width  as f64) * 2.0 - 1.0) * aspect_ratio;
         let image_plane_y = -((y as f64) / scene.height as f64) * 2.0 + 1.0;
 
         Ray {

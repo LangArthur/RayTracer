@@ -8,8 +8,8 @@ use image;
 
 fn main() {
     let scene = rendering::scene::Scene {
-        width: 1000,
-        height: 1000,
+        width: 1920,
+        height: 1080,
         fov: 90.0,
         objects: vec![
             Box::new(rendering::sphere::Sphere {
@@ -81,14 +81,14 @@ fn main() {
         lights: vec![
             rendering::light::Light {
                 origin:    Vector3::new(0.0, 0.0, 0.0),
-                direction: Vector3::new(10.0, 10.0, 10.0),
+                direction: Vector3::new(-0.25, -1.0, -1.0),
                 color: props::color::Color {
                     r: 1.0,
                     g: 1.0,
                     b: 1.0,
                     a: 1.0
                 },
-                intensity: 1.0
+                intensity: 20.0
             }
         ]
     };
