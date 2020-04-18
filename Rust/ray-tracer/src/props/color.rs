@@ -1,7 +1,28 @@
 /// A color struct containing rgba values.
 pub struct Color {
-    pub r: u8,
-    pub g: u8,
-    pub b: u8,
-    pub a: u8
+    pub r: f64,
+    pub g: f64,
+    pub b: f64,
+    pub a: f64
+}
+
+impl Color {
+    
+    pub fn black() -> Color {
+        Color {
+            r: 0.0,
+            g: 0.0,
+            b: 0.0,
+            a: 0.0
+        }
+    }
+
+    pub fn clone(to_clone: &Color) -> Color {
+        Color {
+            r: to_clone.r,
+            g: to_clone.g,
+            b: to_clone.b,
+            a: to_clone.a
+        }
+    }
 }

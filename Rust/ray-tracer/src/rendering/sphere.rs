@@ -47,6 +47,10 @@ impl Drawable for Sphere {
         Some(from_cam - (rad_sqrt - inter_dist_sqrt).sqrt())
     }
 
+    fn surface_normal(&self, hit: Vector3<f64>) -> Vector3<f64> {
+        (self.center - hit).normalize()
+    }
+
     fn color(&self) -> &Color {
         &self.color
     }

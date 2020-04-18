@@ -17,77 +17,77 @@ fn main() {
                 center: Vector3::new(0.0, 0.0, -3.0),
                 radius: 1.0,
                 color: props::color::Color {
-                    r: 255,
-                    g: 0,
-                    b: 0,
-                    a: 255,
+                    r: 1.0,
+                    g: 0.0,
+                    b: 0.0,
+                    a: 1.0,
                 },
                 albedo: props::albedo::Albedo {
-                    intensity: 0.1
+                    intensity: 0.18
                 }
             }),
             Box::new(rendering::sphere::Sphere {
                 center: Vector3::new(-0.5, 0.0, -3.0),
                 radius: 1.0,
                 color: props::color::Color {
-                    r: 0,
-                    g: 0,
-                    b: 255,
-                    a: 255,
+                    r: 0.0,
+                    g: 0.0,
+                    b: 1.0,
+                    a: 1.0,
                 },
                 albedo: props::albedo::Albedo {
-                    intensity: 0.1
+                    intensity: 0.18
                 }
             }),
             Box::new(rendering::sphere::Sphere {
                 center: Vector3::new(2.0, 0.0, -3.0),
                 radius: 1.0,
                 color: props::color::Color {
-                    r: 0,
-                    g: 255,
-                    b: 0,
-                    a: 255,
+                    r: 0.0,
+                    g: 1.0,
+                    b: 0.0,
+                    a: 1.0,
                 },
                 albedo: props::albedo::Albedo {
-                    intensity: 0.1
+                    intensity: 0.18
                 }
             }),
             Box::new(rendering::plane::Plane {
                 origin: Vector3::new(0.0, -3.0, -5.0),
                 normal: Vector3::new(0.0, -1.0, 0.0),
                 color: props::color::Color {
-                    r: 255,
-                    g: 255,
-                    b: 255,
-                    a: 50,
+                    r: 1.0,
+                    g: 1.0,
+                    b: 1.0,
+                    a: 0.2,
                 },
                 albedo: props::albedo::Albedo {
-                    intensity: 0.1
+                    intensity: 0.18
                 }
             }),
             Box::new(rendering::plane::Plane {
                 origin: Vector3::new(0.0, 0.0, -5.0),
                 normal: Vector3::new(0.0, 0.0, -1.0),
                 color: props::color::Color {
-                    r: 128,
-                    g: 128,
-                    b: 128,
-                    a: 50,
+                    r: 0.5,
+                    g: 0.5,
+                    b: 0.5,
+                    a: 0.2,
                 },
                 albedo: props::albedo::Albedo {
-                    intensity: 0.1
+                    intensity: 0.18
                 }
             }),
         ],
         lights: vec![
             rendering::light::Light {
-                origin:    Vector3::new(0.0, 0.0, -5.0),
-                direction: Vector3::new(0.0, 0.0, -1.0),
+                origin:    Vector3::new(0.0, 0.0, 0.0),
+                direction: Vector3::new(-5.0, -1.0, -1.0),
                 color: props::color::Color {
-                    r: 255,
-                    g: 255,
-                    b: 255,
-                    a: 255,
+                    r: 1.0,
+                    g: 1.0,
+                    b: 1.0,
+                    a: 1.0,
                 },
                 intensity: 1.0
             }
@@ -99,6 +99,4 @@ fn main() {
         None => panic!("There is no object to render."),
     };
     img.save("test.png").unwrap();
-    assert_eq!(scene.width, img.width());
-    assert_eq!(scene.height, img.height());
 }

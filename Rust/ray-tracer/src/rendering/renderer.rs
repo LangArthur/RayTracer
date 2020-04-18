@@ -1,11 +1,14 @@
+extern crate cgmath;
+use cgmath::InnerSpace;
+
 use crate::rendering;
 use crate::props;
+use crate::rendering::object_traits::Drawable;
+use crate::miscellaneous::progressbar::ProgressBar;
+use crate::rendering::light::Light;
 
 use image;
 use image::GenericImage;
-
-use crate::rendering::object_traits::Drawable;
-use crate::miscellaneous::progressbar::ProgressBar;
 
 /// Takes a scene in parameter and render it to an image with the image crate.
 pub fn render(scene: &rendering::scene::Scene) -> Option<image::DynamicImage> {
@@ -74,16 +77,34 @@ fn render_pixel_on_image(x: u32,
     match obj_to_render {
         Some(obj_to_render) => {
 
-            let color_to_render = obj_to_render.color();
-
+            let color_to_render = shadows(&ray, obj_to_render, &scene.lights, curr_dist_min.unwrap());
+    
             image.put_pixel(x, y, image::Rgba([
-                color_to_render.r,
-                color_to_render.g,
-                color_to_render.b,
-                color_to_render.a
+                (color_to_render.r * 255.0) as u8,
+                (color_to_render.g * 255.0) as u8,
+                (color_to_render.b * 255.0) as u8,
+                (color_to_render.a * 255.0) as u8
             ]));
         },
 
         None => image.put_pixel(x, y, image::Rgba([0, 0, 0, 0]))
+    }
+}
+
+fn shadows(ray: &props::ray::Ray,
+           object: &Box<dyn Drawable>,
+           lights: &Vec<Light>,
+           distance: f64) -> props::color::Color {
+
+    let ray_hit = ray.origin + (ray.direction * distance);
+    let surface_normal = object.surface_normal(ray_hit);
+    let light_power = surface_normal.dot(-lights[0].direction).max(0.0);
+    let light_reflected = object.albedo().intensity / std::f64::consts::PI;
+
+    props::color::Color {
+        r: object.color().r * lights[0].color.r * light_power * light_reflected,
+        g: object.color().g * lights[0].color.g * light_power * light_reflected,
+        b: object.color().b * lights[0].color.b * light_power * light_reflected,
+        a: object.color().a * lights[0].color.a * light_power * light_reflected
     }
 }

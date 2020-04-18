@@ -1,5 +1,8 @@
+use std::io::prelude::*;
 use std::sync::mpsc;
 use std::thread;
+use std::io;
+
 
 pub struct ProgressBar {
 
@@ -33,6 +36,9 @@ impl ProgressBar {
                 }
                 print!("]");
                 i = if i < 3 { i + 1 } else { 0 };
+
+                // TODO : Better error handling.
+                io::stdout().flush().ok().expect("Could not flush stdout");
             }
         });
 

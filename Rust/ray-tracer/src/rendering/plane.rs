@@ -42,6 +42,10 @@ impl Drawable for Plane {
         None
     }
 
+    fn surface_normal(&self, _hit: Vector3<f64>) -> Vector3<f64> {
+        -self.normal
+    }
+
     fn color(&self) -> &Color {
         &self.color
     }
