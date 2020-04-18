@@ -5,7 +5,6 @@ use raytracer::props;
 use raytracer::rendering;
 
 use image;
-use image::GenericImageView;
 
 fn main() {
     let scene = rendering::scene::Scene {
@@ -82,12 +81,12 @@ fn main() {
         lights: vec![
             rendering::light::Light {
                 origin:    Vector3::new(0.0, 0.0, 0.0),
-                direction: Vector3::new(-5.0, -1.0, -1.0),
+                direction: Vector3::new(0.0, 0.0, 10.0),
                 color: props::color::Color {
                     r: 1.0,
                     g: 1.0,
                     b: 1.0,
-                    a: 1.0,
+                    a: 1.0
                 },
                 intensity: 1.0
             }

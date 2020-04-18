@@ -77,7 +77,7 @@ fn render_pixel_on_image(x: u32,
     match obj_to_render {
         Some(obj_to_render) => {
 
-            let color_to_render = shadows(&ray, obj_to_render, &scene.lights, curr_dist_min.unwrap());
+            let color_to_render = light(&ray, obj_to_render, &scene.lights, curr_dist_min.unwrap());
     
             image.put_pixel(x, y, image::Rgba([
                 (color_to_render.r * 255.0) as u8,
@@ -91,7 +91,7 @@ fn render_pixel_on_image(x: u32,
     }
 }
 
-fn shadows(ray: &props::ray::Ray,
+fn light(ray: &props::ray::Ray,
            object: &Box<dyn Drawable>,
            lights: &Vec<Light>,
            distance: f64) -> props::color::Color {
