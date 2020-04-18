@@ -81,7 +81,7 @@ fn main() {
         lights: vec![
             rendering::light::Light {
                 origin:    Vector3::new(0.0, 0.0, 0.0),
-                direction: Vector3::new(0.0, 0.0, 10.0),
+                direction: Vector3::new(10.0, 10.0, 10.0),
                 color: props::color::Color {
                     r: 1.0,
                     g: 1.0,

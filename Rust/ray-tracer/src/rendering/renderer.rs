@@ -44,18 +44,13 @@ fn render_part_of_image(start: u32,
     }
 }
 
-fn render_pixel_on_image(x: u32,
-                         y: u32,
-                         scene: &rendering::scene::Scene,
-                         image: &mut image::DynamicImage) {
-    // Tracing a ray.
-    let ray = props::ray::Ray::create_prime(x, y, scene);
+fn get_min_distance<'a>(ray: &props::ray::Ray, objects: &'a Vec<Box<dyn Drawable>>) -> (Option<&'a Box<dyn Drawable>>, Option<f64>) {
 
     // Calculating the closest distance between the camera and an object that the ray hit.
     let mut obj_to_render: Option<&Box<dyn Drawable>> = None;
     let mut curr_dist_min: Option<f64>                = None;
 
-    for object in scene.objects.iter() {
+    for object in objects.iter() {
 
         match object.hit(&ray) {
             Some(d) => match curr_dist_min {
@@ -70,14 +65,26 @@ fn render_pixel_on_image(x: u32,
             },
             None    => ()
         }
-    }
+    };
+
+    (obj_to_render, curr_dist_min)
+}
+
+fn render_pixel_on_image(x: u32,
+                         y: u32,
+                         scene: &rendering::scene::Scene,
+                         image: &mut image::DynamicImage) {
+    // Tracing a ray.
+    let ray = props::ray::Ray::create_prime(x, y, scene);
+
+    let (obj_to_render, curr_dist_min): (Option<&Box<dyn Drawable>>, Option<f64>) = get_min_distance(&ray, &scene.objects);
 
     // Checking if the ray has hit a sphere.
     // (We will add more shapes in the futur)
     match obj_to_render {
         Some(obj_to_render) => {
 
-            let color_to_render = light(&ray, obj_to_render, &scene.lights, curr_dist_min.unwrap());
+            let color_to_render = compute_light(&ray, obj_to_render, &scene.lights, curr_dist_min.unwrap());
     
             image.put_pixel(x, y, image::Rgba([
                 (color_to_render.r * 255.0) as u8,
@@ -91,7 +98,7 @@ fn render_pixel_on_image(x: u32,
     }
 }
 
-fn light(ray: &props::ray::Ray,
+fn compute_light(ray: &props::ray::Ray,
            object: &Box<dyn Drawable>,
            lights: &Vec<Light>,
            distance: f64) -> props::color::Color {
