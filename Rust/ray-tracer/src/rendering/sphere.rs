@@ -48,7 +48,7 @@ impl Drawable for Sphere {
     }
 
     fn surface_normal(&self, hit: Vector3<f64>) -> Vector3<f64> {
-        (self.center - hit).normalize()
+        (hit - self.center).normalize()
     }
 
     fn color(&self) -> &Color {
