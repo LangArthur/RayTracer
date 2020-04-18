@@ -25,4 +25,12 @@ impl Color {
             a: to_clone.a
         }
     }
+    pub fn clamp(&self) -> Color {
+        Color {
+            r: self.r.min(1.0).max(0.0),
+            g: self.g.min(1.0).max(0.0),
+            b: self.b.min(1.0).max(0.0),
+            a: self.a.min(1.0).max(0.0)
+        }
+    }
 }

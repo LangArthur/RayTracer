@@ -131,11 +131,12 @@ fn compute_light(light_ray: &props::ray::Ray,
 
     let light_reflected = object.albedo().intensity / std::f64::consts::PI;
 
-    // Calculating the color of the current pixel. 
+    // Calculating the color of the current pixel.
+    // We are clamping the colors to prevent bad shadow rendering.
     props::color::Color {
         r: object.color().r * scene.lights[0].color.r * light_power * light_reflected,
         g: object.color().g * scene.lights[0].color.g * light_power * light_reflected,
         b: object.color().b * scene.lights[0].color.b * light_power * light_reflected,
         a: object.color().a * scene.lights[0].color.a * light_power * light_reflected
-    }
+    }.clamp()
 }
