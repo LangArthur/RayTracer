@@ -44,7 +44,15 @@ impl Drawable for Sphere {
 
         // let's now calculate the distance between the point at the opposite of the 90° angle
         // and the intersection of the ray. The radius will act as the hypotenuse.
-        Some(from_cam - (rad_sqrt - inter_dist_sqrt).sqrt())
+        // Some(from_cam - (rad_sqrt - inter_dist_sqrt).sqrt())
+
+        // This needs to be calculated in case that the ray is cast behind an object.
+        let to_intersect = (rad_sqrt - inter_dist_sqrt).sqrt();
+        let t0 = from_cam - to_intersect;
+        let t1 = from_cam + to_intersect;
+         
+        if t0 < 0.0 && t1 < 0.0 { return None; }
+        if t0 < t1 { Some(t0) } else { Some(t1) }
     }
 
     fn surface_normal(&self, hit: Vector3<f64>) -> Vector3<f64> {

@@ -117,14 +117,14 @@ fn compute_light(light_ray: &props::ray::Ray,
     let light_reflected = object.albedo().intensity / std::f64::consts::PI;
 
     // Shadow computation.
-    let shadow_ray = props::ray::Ray::new(light_ray_hit + (surface_normal * 1e-13), direction_to_light_normal);
+    let shadow_ray = props::ray::Ray::new(light_ray_hit + surface_normal * 1e-4, direction_to_light_normal);
     let (_, distance) = get_min_distance(&shadow_ray, &scene.objects);
 
     // Calculatin light's intensity if their is no shadow.
     // If their is, display a black pixel.
     // TODO : Replace the black pixel by a backgroud pixel.
     let light_intensity = match distance {
-        Some(d) => if d <= 0.0 { scene.lights[0].intensity } else { 0.0 },
+        Some(_) => 0.0,
         None    => scene.lights[0].intensity
     };
 
