@@ -39,7 +39,7 @@ fn main() {
                 }
             }),
             Box::new(rendering::sphere::Sphere {
-                center: Vector3::new(0.5, 1.6, -2.5),
+                center: Vector3::new(-0.5, 2.0, -2.0),
                 radius: 1.0,
                 color: props::color::Color {
                     r: 0.0,
@@ -89,7 +89,19 @@ fn main() {
                     a: 1.0
                 },
                 intensity: 20.0
+            },
+            rendering::light::Light {
+                origin:    Vector3::new(0.0, 0.0, 0.0),
+                direction: Vector3::new(-0.25, -0.0, -0.0),
+                color: props::color::Color {
+                    r: 1.0,
+                    g: 1.0,
+                    b: 1.0,
+                    a: 1.0
+                },
+                intensity: 20.0
             }
+
         ]
     };
 
