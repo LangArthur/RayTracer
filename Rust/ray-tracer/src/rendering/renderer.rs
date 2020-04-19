@@ -114,7 +114,7 @@ fn compute_light(light_ray: &props::ray::Ray,
     let mut pixel_color = props::color::Color::black();
     let light_ray_hit = light_ray.origin + (light_ray.direction * distance);
     let surface_normal = object.surface_normal(light_ray_hit);
-    let light_reflected = object.albedo().intensity / std::f64::consts::PI;
+    let light_reflected = object.albedo() / std::f64::consts::PI;
 
     // Object color ref.
     let object_color = object.color();

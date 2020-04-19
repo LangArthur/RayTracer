@@ -3,7 +3,6 @@ extern crate cgmath;
 use cgmath::Vector3;
 use crate::props::ray::Ray;
 use crate::props::color::Color;
-use crate::props::albedo::Albedo;
 
 pub trait Drawable {
 
@@ -12,7 +11,7 @@ pub trait Drawable {
 
     // To optimise with lifetimes.
     fn color(&self) -> &Color;
-    fn albedo(&self) -> &Albedo;
+    fn albedo(&self) -> f64;
 }
 
 pub trait Light {

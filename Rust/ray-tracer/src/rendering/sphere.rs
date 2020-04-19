@@ -4,7 +4,6 @@ use cgmath::Vector3;
 use cgmath::InnerSpace;
 use crate::props::ray::Ray;
 use crate::props::color::Color;
-use crate::props::albedo::Albedo;
 use crate::rendering::object_traits::Drawable;
 
 /// A sphere struct that contains data to render a sphere in a scene.
@@ -12,7 +11,7 @@ pub struct Sphere {
     pub center: Vector3<f64>,
     pub radius: f64,
     pub color:  Color,
-    pub albedo: Albedo,
+    pub albedo: f64,
 }
 
 impl Drawable for Sphere {
@@ -63,7 +62,7 @@ impl Drawable for Sphere {
         &self.color
     }
 
-    fn albedo(&self) -> &Albedo {
-        &self.albedo
+    fn albedo(&self) -> f64 {
+        self.albedo
     }
 }

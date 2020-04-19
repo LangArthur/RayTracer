@@ -13,7 +13,7 @@ fn main() {
         fov: 90.0,
         objects: vec![
             Box::new(rendering::sphere::Sphere {
-                center: Vector3::new(0.0, 1.0, -3.0),
+                center: Vector3::new(0.0, 2.0, -3.0),
                 radius: 1.0,
                 color: props::color::Color {
                     r: 1.0,
@@ -21,12 +21,10 @@ fn main() {
                     b: 0.0,
                     a: 1.0,
                 },
-                albedo: props::albedo::Albedo {
-                    intensity: 0.18
-                }
+                albedo: 0.18
             }),
             Box::new(rendering::sphere::Sphere {
-                center: Vector3::new(-0.5, 0.0, -3.0),
+                center: Vector3::new(-1.0, 0.0, -3.0),
                 radius: 1.0,
                 color: props::color::Color {
                     r: 0.0,
@@ -34,12 +32,10 @@ fn main() {
                     b: 0.0,
                     a: 1.0,
                 },
-                albedo: props::albedo::Albedo {
-                    intensity: 0.18
-                }
+                albedo: 0.18
             }),
             Box::new(rendering::sphere::Sphere {
-                center: Vector3::new(0.5, 0.0, -3.0),
+                center: Vector3::new(1.0, 0.0, -3.0),
                 radius: 1.0,
                 color: props::color::Color {
                     r: 0.0,
@@ -47,9 +43,7 @@ fn main() {
                     b: 1.0,
                     a: 1.0,
                 },
-                albedo: props::albedo::Albedo {
-                    intensity: 0.38
-                }
+                albedo: 0.38
             }),
             Box::new(rendering::plane::Plane {
                 origin: Vector3::new(0.0, -2.0, 0.0),
@@ -60,9 +54,7 @@ fn main() {
                     b: 1.0,
                     a: 0.2,
                 },
-                albedo: props::albedo::Albedo {
-                    intensity: 0.18
-                }
+                albedo: 0.18
             }),
             Box::new(rendering::plane::Plane {
                 origin: Vector3::new(0.0, 0.0, -20.0),
@@ -73,9 +65,7 @@ fn main() {
                     b: 0.5,
                     a: 0.2,
                 },
-                albedo: props::albedo::Albedo {
-                    intensity: 0.18
-                }
+                albedo: 0.18
             }),
         ],
         lights: vec![
