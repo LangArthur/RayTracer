@@ -14,3 +14,10 @@ pub trait Drawable {
     fn color(&self) -> &Color;
     fn albedo(&self) -> &Albedo;
 }
+
+pub trait Light {
+
+    fn direction(&self) -> &Vector3<f64>;
+    fn intensity(&self) -> f64;
+    fn color(&self) -> &Color;
+}

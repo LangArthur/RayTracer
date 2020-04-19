@@ -118,7 +118,7 @@ fn compute_light(light_ray: &props::ray::Ray,
         // Light computation.
         let light_ray_hit = light_ray.origin + (light_ray.direction * distance);
         let surface_normal = object.surface_normal(light_ray_hit);
-        let direction_to_light_normal = -light.direction.normalize();
+        let direction_to_light_normal = -light.direction().normalize();
         let light_reflected = object.albedo().intensity / std::f64::consts::PI;
 
         // Shadow computation.
@@ -130,17 +130,17 @@ fn compute_light(light_ray: &props::ray::Ray,
         // TODO : Replace the black pixel by a backgroud pixel.
         let light_intensity = match distance {
             Some(_) => 0.0,
-            None    => scene.lights[0].intensity
+            None    => light.intensity()
         };
 
         let light_power = surface_normal.dot(direction_to_light_normal).max(0.0) * light_intensity;
 
         // Calculating the color of the current pixel.
         // We are clamping the colors to prevent bad shadow rendering.
-        pixel_color.r += object.color().r * scene.lights[0].color.r * light_power * light_reflected;
-        pixel_color.g += object.color().g * scene.lights[0].color.g * light_power * light_reflected;
-        pixel_color.b += object.color().b * scene.lights[0].color.b * light_power * light_reflected;
-        pixel_color.a += object.color().a * scene.lights[0].color.a * light_power * light_reflected;
+        pixel_color.r += object.color().r * light.color().r * light_power * light_reflected;
+        pixel_color.g += object.color().g * light.color().g * light_power * light_reflected;
+        pixel_color.b += object.color().b * light.color().b * light_power * light_reflected;
+        pixel_color.a += object.color().a * light.color().a * light_power * light_reflected;
     }
     pixel_color.clamp()
 } 
