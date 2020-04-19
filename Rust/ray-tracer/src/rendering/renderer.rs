@@ -142,9 +142,9 @@ fn compute_light(light_ray: &props::ray::Ray,
 
         // Calculating the color of the current pixel.
         // We are clamping the colors to prevent bad shadow rendering.
-        pixel_color.r += object_material.color.r * light_color.r * light_power * light_reflected;
-        pixel_color.g += object_material.color.g * light_color.g * light_power * light_reflected;
-        pixel_color.b += object_material.color.b * light_color.b * light_power * light_reflected;
+        pixel_color.r += object_material.texture.color().r * light_color.r * light_power * light_reflected;
+        pixel_color.g += object_material.texture.color().g * light_color.g * light_power * light_reflected;
+        pixel_color.b += object_material.texture.color().b * light_color.b * light_power * light_reflected;
     }
     pixel_color.clamp()
 } 

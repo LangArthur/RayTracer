@@ -1,16 +1,33 @@
-extern crate cgmath;
-use cgmath::Vector2;
+extern crate image;
 
 use crate::props::color::Color;
+use image::DynamicImage;
 
-pub struct Texture {
-    pub coords:  Vector2<f64>,
-    pub texture: f64
+pub enum Texture {
+    ColorTexture(Color),
+    ImageTexture(DynamicImage)
+}
+
+impl Texture {
+
+    pub fn color(&self) -> Color {
+
+        match *self {
+            Texture::ColorTexture(ref color)   => Color::clone(color),
+            Texture::ImageTexture(ref _texture) => {
+                Color {
+                    r: 0.0,
+                    g: 0.0,
+                    b: 0.0,
+                    a: 0.0
+                }
+            }
+        }
+    }
 }
 
 pub struct Material {
 
-    pub texture: Option<Texture>,
+    pub texture: Texture,
     pub albedo:  f64,
-    pub color:   Color
 }

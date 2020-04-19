@@ -1,16 +1,19 @@
 extern crate cgmath;
+use cgmath::{ Vector2, Vector3 };
 
-use cgmath::Vector3;
-use crate::props::ray::Ray;
-use crate::props::color::Color;
-use crate::props::material::Material;
+use crate::props::{ ray::Ray, color::Color, material::Material };
 
 pub trait Drawable {
 
+    // Ray computation.
     fn hit(&self, ray: &Ray) -> Option<f64>;
     fn surface_normal(&self, hit: Vector3<f64>) -> Vector3<f64>;
 
+    // Gets all material data;
     fn material_data(&self) -> &Material;
+
+    // Gets the coordinates of the texture at a given hit point.
+    fn get_texture_coords(&self, hit: Vector3<f64>) -> Vector2<f64>;
 }
 
 pub trait Light {

@@ -1,9 +1,7 @@
 extern crate cgmath;
+use cgmath::{ Vector2, Vector3, InnerSpace };
 
-use cgmath::Vector3;
-use cgmath::InnerSpace;
-use crate::props::ray::Ray;
-use crate::props::material::Material;
+use crate::props::{ ray::Ray, material::Material };
 use crate::rendering::object_traits::Drawable;
 
 /// A sphere struct that contains data to render a sphere in a scene.
@@ -46,5 +44,12 @@ impl Drawable for Plane {
 
     fn material_data(&self) -> &Material {
         &self.material
+    }
+
+    fn get_texture_coords(&self, _: Vector3<f64>) -> Vector2<f64> {
+        Vector2 {
+            x: 0.0,
+            y: 0.0
+        }
     }
 }
