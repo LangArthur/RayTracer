@@ -17,7 +17,8 @@ pub trait Drawable {
 
 pub trait Light {
 
-    fn direction(&self) -> &Vector3<f64>;
-    fn intensity(&self) -> f64;
+    fn direction_from(&self, hit :Vector3<f64>) -> Vector3<f64>;
+    fn intensity(&self, hit :Vector3<f64>) -> f64;
+    fn distance(&self, hit :Vector3<f64>) -> f64;
     fn color(&self) -> &Color;
 }

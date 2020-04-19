@@ -110,37 +110,42 @@ fn compute_light(light_ray: &props::ray::Ray,
            scene: &rendering::scene::Scene,
            distance: f64) -> props::color::Color {
 
+    // Light computation.
     let mut pixel_color = props::color::Color::black();
+    let light_ray_hit = light_ray.origin + (light_ray.direction * distance);
+    let surface_normal = object.surface_normal(light_ray_hit);
+    let light_reflected = object.albedo().intensity / std::f64::consts::PI;
+
+    // Object color ref.
+    let object_color = object.color();
 
     // Computing light and shadows for every lights in the scene.
     for light in &scene.lights {
 
-        // Light computation.
-        let light_ray_hit = light_ray.origin + (light_ray.direction * distance);
-        let surface_normal = object.surface_normal(light_ray_hit);
-        let direction_to_light_normal = -light.direction().normalize();
-        let light_reflected = object.albedo().intensity / std::f64::consts::PI;
+        // Direction to the light normalized.
+        let direction_to_light_normal = light.direction_from(light_ray_hit);
 
         // Shadow computation.
         let shadow_ray = props::ray::Ray::new(light_ray_hit + surface_normal * 1e-4, direction_to_light_normal);
-        let (_, distance) = get_min_distance(&shadow_ray, &scene.objects);
+        let (_, dst_to_near_obj) = get_min_distance(&shadow_ray, &scene.objects);
 
-        // Calculatin light's intensity if their is no shadow.
+        // Calculating light's intensity if their is no shadow.
         // If their is, display a black pixel.
         // TODO : Replace the black pixel by a backgroud pixel.
-        let light_intensity = match distance {
-            Some(_) => 0.0,
-            None    => light.intensity()
+        let light_intensity = match dst_to_near_obj {
+            Some(d) => if d > light.distance(light_ray_hit) { light.intensity(light_ray_hit) } else { 0.0 },
+            None    => light.intensity(light_ray_hit)
         };
 
+        // Computing current's light power.
         let light_power = surface_normal.dot(direction_to_light_normal).max(0.0) * light_intensity;
+        let light_color = light.color();
 
         // Calculating the color of the current pixel.
         // We are clamping the colors to prevent bad shadow rendering.
-        pixel_color.r += object.color().r * light.color().r * light_power * light_reflected;
-        pixel_color.g += object.color().g * light.color().g * light_power * light_reflected;
-        pixel_color.b += object.color().b * light.color().b * light_power * light_reflected;
-        pixel_color.a += object.color().a * light.color().a * light_power * light_reflected;
+        pixel_color.r += object_color.r * light_color.r * light_power * light_reflected;
+        pixel_color.g += object_color.g * light_color.g * light_power * light_reflected;
+        pixel_color.b += object_color.b * light_color.b * light_power * light_reflected;
     }
     pixel_color.clamp()
 } 

@@ -13,11 +13,11 @@ fn main() {
         fov: 90.0,
         objects: vec![
             Box::new(rendering::sphere::Sphere {
-                center: Vector3::new(-2.0, 0.0, -3.0),
+                center: Vector3::new(0.0, 1.0, -3.0),
                 radius: 1.0,
                 color: props::color::Color {
                     r: 1.0,
-                    g: 1.0,
+                    g: 0.0,
                     b: 0.0,
                     a: 1.0,
                 },
@@ -30,19 +30,6 @@ fn main() {
                 radius: 1.0,
                 color: props::color::Color {
                     r: 0.0,
-                    g: 0.0,
-                    b: 1.0,
-                    a: 1.0,
-                },
-                albedo: props::albedo::Albedo {
-                    intensity: 0.18
-                }
-            }),
-            Box::new(rendering::sphere::Sphere {
-                center: Vector3::new(-0.5, 2.0, -2.0),
-                radius: 1.0,
-                color: props::color::Color {
-                    r: 0.0,
                     g: 1.0,
                     b: 0.0,
                     a: 1.0,
@@ -51,8 +38,21 @@ fn main() {
                     intensity: 0.18
                 }
             }),
+            Box::new(rendering::sphere::Sphere {
+                center: Vector3::new(0.5, 0.0, -3.0),
+                radius: 1.0,
+                color: props::color::Color {
+                    r: 0.0,
+                    g: 0.0,
+                    b: 1.0,
+                    a: 1.0,
+                },
+                albedo: props::albedo::Albedo {
+                    intensity: 0.38
+                }
+            }),
             Box::new(rendering::plane::Plane {
-                origin: Vector3::new(0.0, -3.0, -5.0),
+                origin: Vector3::new(0.0, -2.0, 0.0),
                 normal: Vector3::new(0.0, -1.0, 0.0),
                 color: props::color::Color {
                     r: 1.0,
@@ -65,7 +65,7 @@ fn main() {
                 }
             }),
             Box::new(rendering::plane::Plane {
-                origin: Vector3::new(0.0, 0.0, -5.0),
+                origin: Vector3::new(0.0, 0.0, -20.0),
                 normal: Vector3::new(0.0, 0.0, -1.0),
                 color: props::color::Color {
                     r: 0.5,
@@ -79,15 +79,35 @@ fn main() {
             }),
         ],
         lights: vec![
+            Box::new(rendering::light::SphericalLight {
+                origin: Vector3::new(0.0, 6.0, -1.0),
+                color: props::color::Color {
+                    r: 0.3,
+                    g: 0.8,
+                    b: 0.3,
+                    a: 1.0
+                },
+                intensity: 10000.0
+            }),
             Box::new(rendering::light::DirectionalLight {
                 direction: Vector3::new(-0.25, -1.0, -1.0),
                 color: props::color::Color {
-                    r: 1.0,
-                    g: 1.0,
-                    b: 1.0,
+                    r: 0.3,
+                    g: 0.8,
+                    b: 0.3,
                     a: 1.0
                 },
-                intensity: 20.0
+                intensity: 0.0
+            }),
+            Box::new(rendering::light::DirectionalLight {
+                direction: Vector3::new(0.25, -0.5, -0.5),
+                color: props::color::Color {
+                    r: 0.8,
+                    g: 0.3,
+                    b: 0.3,
+                    a: 1.0
+                },
+                intensity: 1.0
             })
         ]
     };
