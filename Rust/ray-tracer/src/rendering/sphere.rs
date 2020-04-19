@@ -3,15 +3,14 @@ extern crate cgmath;
 use cgmath::Vector3;
 use cgmath::InnerSpace;
 use crate::props::ray::Ray;
-use crate::props::color::Color;
+use crate::props::material::Material;
 use crate::rendering::object_traits::Drawable;
 
 /// A sphere struct that contains data to render a sphere in a scene.
 pub struct Sphere {
-    pub center: Vector3<f64>,
-    pub radius: f64,
-    pub color:  Color,
-    pub albedo: f64,
+    pub center:   Vector3<f64>,
+    pub radius:   f64,
+    pub material: Material
 }
 
 impl Drawable for Sphere {
@@ -42,11 +41,10 @@ impl Drawable for Sphere {
         }
 
         // let's now calculate the distance between the point at the opposite of the 90° angle
-        // and the intersection of the ray. The radius will act as the hypotenuse.
-        // Some(from_cam - (rad_sqrt - inter_dist_sqrt).sqrt())
-
-        // This needs to be calculated in case that the ray is cast behind an object.
         let to_intersect = (rad_sqrt - inter_dist_sqrt).sqrt();
+
+        // and the intersection of the ray. The radius will act as the hypotenuse.
+        // This needs to be calculated in case that the ray is cast behind an object.
         let t0 = from_cam - to_intersect;
         let t1 = from_cam + to_intersect;
          
@@ -58,11 +56,7 @@ impl Drawable for Sphere {
         (hit - self.center).normalize()
     }
 
-    fn color(&self) -> &Color {
-        &self.color
-    }
-
-    fn albedo(&self) -> f64 {
-        self.albedo
+    fn material_data(&self) -> &Material {
+        &self.material
     }
 }

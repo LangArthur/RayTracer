@@ -3,15 +3,14 @@ extern crate cgmath;
 use cgmath::Vector3;
 use cgmath::InnerSpace;
 use crate::props::ray::Ray;
-use crate::props::color::Color;
+use crate::props::material::Material;
 use crate::rendering::object_traits::Drawable;
 
 /// A sphere struct that contains data to render a sphere in a scene.
 pub struct Plane {
-    pub origin: Vector3<f64>,
-    pub normal: Vector3<f64>,
-    pub color:  Color,
-    pub albedo: f64
+    pub origin:   Vector3<f64>,
+    pub normal:   Vector3<f64>,
+    pub material: Material
 }
 
 impl Drawable for Plane {
@@ -45,11 +44,7 @@ impl Drawable for Plane {
         -self.normal
     }
 
-    fn color(&self) -> &Color {
-        &self.color
-    }
-
-    fn albedo(&self) -> f64 {
-        self.albedo
+    fn material_data(&self) -> &Material {
+        &self.material
     }
 }

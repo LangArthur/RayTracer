@@ -3,15 +3,14 @@ extern crate cgmath;
 use cgmath::Vector3;
 use crate::props::ray::Ray;
 use crate::props::color::Color;
+use crate::props::material::Material;
 
 pub trait Drawable {
 
     fn hit(&self, ray: &Ray) -> Option<f64>;
     fn surface_normal(&self, hit: Vector3<f64>) -> Vector3<f64>;
 
-    // To optimise with lifetimes.
-    fn color(&self) -> &Color;
-    fn albedo(&self) -> f64;
+    fn material_data(&self) -> &Material;
 }
 
 pub trait Light {

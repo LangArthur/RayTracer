@@ -110,14 +110,13 @@ fn compute_light(light_ray: &props::ray::Ray,
            scene: &rendering::scene::Scene,
            distance: f64) -> props::color::Color {
 
+    let object_material = object.material_data();
+
     // Light computation.
     let mut pixel_color = props::color::Color::black();
     let light_ray_hit = light_ray.origin + (light_ray.direction * distance);
     let surface_normal = object.surface_normal(light_ray_hit);
-    let light_reflected = object.albedo() / std::f64::consts::PI;
-
-    // Object color ref.
-    let object_color = object.color();
+    let light_reflected = object_material.albedo / std::f64::consts::PI;
 
     // Computing light and shadows for every lights in the scene.
     for light in &scene.lights {
@@ -143,9 +142,9 @@ fn compute_light(light_ray: &props::ray::Ray,
 
         // Calculating the color of the current pixel.
         // We are clamping the colors to prevent bad shadow rendering.
-        pixel_color.r += object_color.r * light_color.r * light_power * light_reflected;
-        pixel_color.g += object_color.g * light_color.g * light_power * light_reflected;
-        pixel_color.b += object_color.b * light_color.b * light_power * light_reflected;
+        pixel_color.r += object_material.color.r * light_color.r * light_power * light_reflected;
+        pixel_color.g += object_material.color.g * light_color.g * light_power * light_reflected;
+        pixel_color.b += object_material.color.b * light_color.b * light_power * light_reflected;
     }
     pixel_color.clamp()
 } 
