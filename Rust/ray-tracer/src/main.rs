@@ -16,27 +16,19 @@ fn main() {
                 center: Vector3::new(0.0, 2.0, -3.0),
                 radius: 1.0,
                 material: props::material::Material {
-                    texture: props::material::Texture::ColorTexture(
-                        props::color::Color {
-                            r: 1.0,
-                            g: 0.0,
-                            b: 0.0,
-                            a: 1.0
-                        }),
-                    albedo: 0.18
+                    texture: props::material::Texture::ImageTexture(
+                        image::open("resources/1rip.jpg").unwrap()
+                    ),
+                    albedo: 0.38
                 }
             }),
             Box::new(rendering::sphere::Sphere {
                 center: Vector3::new(-1.0, 0.0, -3.0),
                 radius: 1.0,
                 material: props::material::Material {
-                    texture: props::material::Texture::ColorTexture(
-                        props::color::Color {
-                            r: 0.0,
-                            g: 1.0,
-                            b: 0.0,
-                            a: 1.0
-                        }),
+                    texture: props::material::Texture::ImageTexture(
+                        image::open("resources/and.jpg").unwrap()
+                    ),
                     albedo: 0.18
                 }
             }),
@@ -44,14 +36,10 @@ fn main() {
                 center: Vector3::new(1.0, 0.0, -3.0),
                 radius: 1.0,
                 material: props::material::Material {
-                    texture: props::material::Texture::ColorTexture(
-                        props::color::Color {
-                            r: 0.0,
-                            g: 0.0,
-                            b: 1.0,
-                            a: 1.0
-                            }),
-                    albedo: 0.38
+                    texture: props::material::Texture::ImageTexture(
+                        image::open("resources/tear.jpg").unwrap()
+                    ),
+                    albedo: 0.18
                 }
             }),
             Box::new(rendering::plane::Plane {
@@ -85,14 +73,14 @@ fn main() {
         ],
         lights: vec![
             Box::new(rendering::light::SphericalLight {
-                origin: Vector3::new(0.0, 6.0, -1.0),
+                origin: Vector3::new(0.0, 0.5, -1.0),
                 color: props::color::Color {
-                    r: 0.3,
-                    g: 0.8,
-                    b: 0.3,
+                    r: 1.0,
+                    g: 1.0,
+                    b: 1.0,
                     a: 1.0
                 },
-                intensity: 10000.0
+                intensity: 1000.0
             }),
             Box::new(rendering::light::DirectionalLight {
                 direction: Vector3::new(0.25, -0.5, -0.5),
