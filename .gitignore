@@ -58,3 +58,5 @@ target/
 
 # Other
 *.png
+
+.vscode/

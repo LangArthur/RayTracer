@@ -7,7 +7,7 @@
 
 #include "Scene.hpp"
 
-raytracer::Scene::Scene() : _cam(_primitives)
+raytracer::Scene::Scene()
 { }
 
 raytracer::Scene::~Scene()
@@ -18,10 +18,10 @@ void raytracer::Scene::push(const std::shared_ptr<IPrimitive> &obj)
     _primitives.push_back(obj);
 }
 
-void raytracer::Scene::render(const int &imgX, const int &imgY)
-{
-    _rend.createImage(imgX, imgY, _cam.getView(imgX, imgY));
-}
+// void raytracer::Scene::render(const int &imgX, const int &imgY)
+// {
+//     _rend.createImage(imgX, imgY, _cam.getView(imgX, imgY));
+// }
 
 void raytracer::Scene::debug()
 {

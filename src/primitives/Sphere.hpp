@@ -7,29 +7,26 @@
 
 #pragma once
 
-#include <ctgmath>
-
 #include "IPrimitive.hpp"
-#include "Point3D.hpp"
 
 namespace raytracer
 {
     class Sphere : public IPrimitive {
 
         public:
-            Sphere(const math::Point3D<float> &center, const float &radius);
+            Sphere(const cv::Point3f &center, const float &radius);
             ~Sphere();
 
-            inline const math::Point3D<float> &center() const { return _center; };
+            inline const cv::Point3f &center() const { return _center; };
             inline const float &radius() const { return _radius; };
 
             void debug() override;
             bool intersect(const Ray& ray) override;
-            std::array<unsigned char, 3> getColor() override;
+            const raytracer::Color &getColor() override;
 
         private:
-            math::Point3D<float> _center;
+            cv::Point3f _center;
             float _radius;
-            std::array<unsigned char, 3> _color;
+            raytracer::Color _color;
     };
 }

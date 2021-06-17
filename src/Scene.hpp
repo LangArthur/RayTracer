@@ -19,16 +19,28 @@ namespace raytracer
 {
     class Scene {
         public:
+            /// \brief constructor
             Scene();
+            /// \brief destructor
             ~Scene();
 
+            /// \brief add an object to the scene
+            /// \param obj a referecne on a primitive
             void push(const std::shared_ptr<IPrimitive> &obj);
-            void render(const int &imgX, const int &imgY);
+
+            /// \brief process the image and
+            /// \param imgX width of the output image
+            /// \param imgY height of the output image
+            // void render(const int &imgX, const int &imgY);
+            /// \brief display divers information about the scene
             void debug();
 
         private:
+            /*! vector containing all the primitives of the scene */
             std::vector<std::shared_ptr<IPrimitive>> _primitives;
-            Renderer _rend;
+            /*! The renderer for the scene */
+            // Renderer _rend;
+            /*! The camera of the scene */
             Camera _cam;
     };
 }

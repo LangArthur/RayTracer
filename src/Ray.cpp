@@ -7,7 +7,7 @@
 
 #include "Ray.hpp"
 
-raytracer::Ray::Ray(const Eigen::Vector3f &direction, const math::Point3D<float> &origin) : _direction(direction), _origin(origin)
+raytracer::Ray::Ray(const cv::Vec3f &direction, const cv::Point3f &origin) : _direction(direction), _origin(origin)
 { }
 
 raytracer::Ray::~Ray()

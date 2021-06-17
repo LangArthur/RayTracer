@@ -13,7 +13,7 @@
 
 namespace raytracer
 {
-    using Color = std::array<unsigned char, 3>;
+    using Color = cv::Vec3b;
 
     class IPrimitive {
 
@@ -22,6 +22,6 @@ namespace raytracer
 
             virtual void debug() = 0;
             virtual bool intersect(const Ray& ray) = 0;
-            virtual std::array<unsigned char, 3> getColor() = 0;
+            virtual const Color &getColor() = 0;
     };
 }

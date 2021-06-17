@@ -1,6 +1,5 @@
 [requires]
 gtest/1.8.1@bincrafters/stable
-eigen/3.3.7
 opencv/3.4.3@conan/stable
 
 [generators]

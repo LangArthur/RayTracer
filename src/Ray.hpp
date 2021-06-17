@@ -7,23 +7,24 @@
 
 #pragma once
 
-#include "Point3D.hpp"
+#include <opencv2/core/matx.hpp>
+#include <opencv2/core/types.hpp>
 
 namespace raytracer 
 {
     class Ray {
 
         public:
-            Ray(const Eigen::Vector3f &direction, const math::Point3D<float> &origin);
+            Ray(const cv::Vec3f &direction, const cv::Point3f &origin);
             ~Ray();
 
-            inline const Eigen::Vector3f &direction() const { return _direction; };
+            inline const cv::Vec3f &direction() const { return _direction; };
 
-            inline const math::Point3D<float> &origin() const { return _origin; };
+            inline const cv::Point3f &origin() const { return _origin; };
 
         private:
-            Eigen::Vector3f _direction;
-            math::Point3D<float> _origin;
+            cv::Vec3f _direction;
+            cv::Point3f _origin;
 
         };
 }

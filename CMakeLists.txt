@@ -20,8 +20,6 @@ set(CMAKE_CXX_FLAGS "-W -Wall -fprofile-arcs -ftest-coverage")
 
 ## Primitives src
 set(SRC_PRIMITIVES
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/primitives/Triangle.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/primitives/Square.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/primitives/Sphere.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/primitives/Plan.cpp
 )
@@ -38,9 +36,7 @@ set(SRC
 ## Include headers to program
 include_directories(
     src/primitives
-    src/utils
     src
-    $ENV{EIGEN3_INCLUDE_DIR}
 )
 
 ## Compile sources
@@ -66,14 +62,12 @@ add_executable(unit_tests
 
 ## Linking libraries to executable
 target_link_libraries(RayTracer PUBLIC
-    CONAN_PKG::eigen
     CONAN_PKG::opencv
     ${CMAKE_DL_LIBS}
 )
 
 ## Linking libraries to street
 target_link_libraries(unit_tests PUBLIC
-    CONAN_PKG::eigen
     CONAN_PKG::opencv
     CONAN_PKG::gtest
     ${CMAKE_THREAD_LIBS_INIT}
