@@ -9,11 +9,12 @@
 
 #include <vector>
 #include <memory>
+#include <opencv2/opencv.hpp>
 
 #include "IPrimitive.hpp"
-#include "Renderer.hpp"
+// #include "Renderer.hpp"
 #include "Camera.hpp"
-#include "Ray.hpp"
+// #include "Ray.hpp"
 
 namespace raytracer
 {
@@ -31,7 +32,8 @@ namespace raytracer
             /// \brief process the image and
             /// \param imgX width of the output image
             /// \param imgY height of the output image
-            // void render(const int &imgX, const int &imgY);
+            /// \return the image render inside a opencv matrix
+            cv::Mat render(const int &imgX, const int &imgY);
             /// \brief display divers information about the scene
             void debug();
 
@@ -39,8 +41,10 @@ namespace raytracer
             /*! vector containing all the primitives of the scene */
             std::vector<std::shared_ptr<IPrimitive>> _primitives;
             /*! The renderer for the scene */
-            // Renderer _rend;
+            // Renderer _renderer;
             /*! The camera of the scene */
             Camera _cam;
+            /*! Color of the background of the scene */
+            raytracer::Color _bgColor;
     };
 }

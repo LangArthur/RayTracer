@@ -6,6 +6,8 @@
  */
 
 #include <iostream>
+#include <opencv2/core.hpp>
+#include <opencv2/highgui.hpp>
 
 #include "Scene.hpp"
 #include "Plan.hpp"
@@ -28,7 +30,13 @@ int main([[maybe_unused]]int argc, [[maybe_unused]]char const **argv)
 
     // s.push(sph);
     // s.push(plan);
-    s.debug();
-    // s.render(1920, 1080);
+    // s.debug();
+    auto img = s.render(1920, 1080);
+
+    // cv::imshow("Raytracer", img);
+    // int k = cv::waitKey(0);
+    // if (k == 's') {
+    //     imwrite("starry_night.png", img);
+    // }
     return 0;
 }

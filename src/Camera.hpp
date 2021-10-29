@@ -9,8 +9,10 @@
 
 #include <memory>
 #include <vector>
+#include <initializer_list>
 
 #include "IPrimitive.hpp"
+#include "Ray.hpp"
 
 namespace raytracer
 {
@@ -21,11 +23,14 @@ namespace raytracer
             ~Camera();
 
             inline void changeColor(raytracer::Color color);
+            inline void setPictureDimension(int x, int y) { _pictDim = {x, y}; }
+
+            const raytracer::Ray getRay(const int &x, const int &y);
 
         private:
-            cv::Point3f _pos;
-            cv::Vec3f _lookAt;
+            std::pair<int, int> _pictDim; // dimension of the picture
+            cv::Point3f _pos; // position of the camera
             float _angle;
-            raytracer::Color _bgColor;
+            // float _focal; // distance between projection plane and projection point : might be use later
     };    
 }

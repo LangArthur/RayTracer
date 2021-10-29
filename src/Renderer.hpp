@@ -8,6 +8,10 @@
 #pragma once
 
 #include <opencv2/opencv.hpp>
+#include <memory>
+
+#include "IPrimitive.hpp"
+#include "Camera.hpp"
 
 constexpr const auto IMG_PATH = "./output.png";
 
@@ -19,6 +23,6 @@ namespace raytracer
             Renderer();
             ~Renderer();
 
-            void createImage(const int &imgX, const int &imgY);
-    };    
+            cv::Mat &render(const int &imgX, const int &imgY, const std::vector<std::shared_ptr<IPrimitive>> &prim, const raytracer::Camera &cam);
+    };
 }

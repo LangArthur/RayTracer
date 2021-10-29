@@ -45,7 +45,6 @@ build/
 *.class
 
 # Build
-Arthur/build/
 build/
 
 #test
